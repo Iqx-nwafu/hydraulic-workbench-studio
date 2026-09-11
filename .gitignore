@@ -1,0 +1,13 @@
+# This repository is the public client download and user-guide portal.
+# Keep application source, approval tools, local data, and build outputs private.
+*
+!/.gitignore
+!/README.md
+!/LICENSE
+!/SHA256SUMS.txt
+!/docs/
+/docs/*
+!/docs/ClientReadme.txt
+!/docs/LongitudinalReadme.txt
+!/docs/2.2.0更新说明.txt
+!/docs/InstallerReadme.txt

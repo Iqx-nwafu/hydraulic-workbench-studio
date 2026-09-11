@@ -1,0 +1,2 @@
+1e429015cbe8cfae91a46b2abe9ada1d00aa502540e7222862f6ea7aa50911a9  HydraulicWorkbenchStudio-2.2.0-Windows-x64-Setup.exe
+c859e5bb0265317b79f29f97cd85931cbfb8efa0d5b7f6b2af97bfbbf7c949f7  HydraulicWorkbenchStudio-2.2.0-Windows-x64.zip
