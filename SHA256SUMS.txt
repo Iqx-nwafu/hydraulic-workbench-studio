@@ -1,2 +1,2 @@
-90d85493b928890c370e03c4b28b43f2279aa45152b89bb6659355dd4bbfcab9  HydraulicWorkbenchStudio-2.4.2-Windows-x64-Setup.exe
-c0fa97c6f26530cb6e88383351149a33bb28089bb1bc648412b2895ac8960f26  HydraulicWorkbenchStudio-2.4.2-Windows-x64.zip
+2d5b2c60477e7ec8abaab1de4b46c3f4050fb1cbe8bc6e25fd46d8f1b230f1e2  HydraulicWorkbenchStudio-2.4.2-Windows-x64-Setup.exe
+74fbf27933b8d534f15cf7a9424ca40ea1f68d9154cea18d2b3fa069eaf8efb1  HydraulicWorkbenchStudio-2.4.2-Windows-x64.zip
