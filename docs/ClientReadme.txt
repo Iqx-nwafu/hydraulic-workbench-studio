@@ -1,20 +1,23 @@
-有压管网瞬态水力仿真平台 2.4.2 — 客户端使用说明
+有压管网瞬态水力仿真平台 2.4.4 — 客户端使用说明
 
 本平台用于单管及分支、环状管网的一维瞬态水力分析，支持 MOC/FVM、图纸识别与拓扑复核、
 真实纵断面与压力校核、关阀方案比较、轮灌规划与监测布设及结果报告。
 2.4.2 在 2.2.0 的计算能力基础上新增监测布设与轮灌、管径与轮灌联合设计、全局最优求解、
 拓扑导出和文字标注，完善高清动态登录、本机头像、截图反馈、联系方式绑定、系统概况及按钮交互。
-详细功能见“2.4.2更新说明.txt”。
+2.4.3 修复含中文路径时工况无法保存的问题，新增拓扑界面 Delete 删除、Ctrl+Z 撤销与
+反馈回复查看。2.4.4 新增 AI 小助手、可拖动的节点/管段编号、文字与编号批量样式修改，
+以及导出时可选是否带编号。详细功能见“2.4.4更新说明.txt”“2.4.3更新说明.txt”和
+“2.4.2更新说明.txt”。
 
 一、安装与启动
 
 客户端适用于 Windows 10/11（64 位），已携带运行依赖和本机 CPU 图纸识别组件。
 无需另外安装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。
 
-安装版：运行 HydraulicWorkbenchStudio-2.4.2-Windows-x64-Setup.exe，按向导安装，
+安装版：运行 HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe，按向导安装，
 然后通过桌面或开始菜单启动。安装版和免安装版使用相同账户及计算功能。
 
-免安装版：先完整解压 HydraulicWorkbenchStudio-2.4.2-Windows-x64.zip，
+免安装版：先完整解压 HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip，
 再运行 HydraulicWorkbenchStudioSecure.exe。不要在压缩包预览窗口内运行。
 请保留整个程序文件夹，不要单独移动主程序或删除 auth_distribution.json、
 HydraulicWorkbenchUpdater.exe、recognition_runtime 及其他运行库。
@@ -71,6 +74,8 @@ HydraulicWorkbenchUpdater.exe、recognition_runtime 及其他运行库。
 可查看阶段和耗时并取消任务；有效本机授权范围内可离线识图。
 
 拓扑工具栏的“添加文字”支持多行标注、单击编辑、拖动位置和右键样式设置。
+选中节点、管段或标注后按 Delete 键可删除；Ctrl+Z 撤销上一步拓扑修改，Ctrl+Y 重做，
+撤销结果自动写回工况。识别结果校核窗口中同样可用 Delete 和 Ctrl+Z/Ctrl+Y。
 “导出拓扑”输出完整场景的 PNG、JPG 或 AutoCAD 2004 格式 DWG。
 图片支持 72–1200 DPI；DWG 为矢量文件，不使用 DPI，字体显示取决于接收电脑。
 
@@ -82,9 +87,8 @@ HydraulicWorkbenchUpdater.exe、recognition_runtime 及其他运行库。
 
 五、更新与数据保护
 
-GitHub Release 与软件内更新服务分别发布。2026-10-26 起软件内更新已同步提供本版 2.4.2，
-以“设置 → 软件更新…”中实际显示的版本和状态为准。2026-10-25 从 GitHub 安装过 2.4.2 的用户，
-因版本号相同不会收到更新提示，请用最新安装程序覆盖安装。
+GitHub Release 与软件内更新服务分别发布。2.4.4 已同时提供 GitHub 安装程序和软件内更新，
+以“设置 → 软件更新…”中实际显示的版本和状态为准。
 有可用版本时可选择“检查更新”“下载并安装更新”，并按提示完成。
 
 更新前保存工况，备份工程和结果。更新期间不要强制结束更新器或关机。
@@ -106,6 +110,8 @@ GitHub Release 与软件内更新服务分别发布。2026-10-26 起软件内更
 继续作为有效物理结论。软件用于科研、教学和辅助分析，实际工程应用需复核输入与适用范围。
 
 在线登录后点击右上角“反馈”，可提交文字及最多 4 张静态 PNG、JPG、WebP 图片。
+审批中心回复后，登录时右上角反馈按钮会提示未读；在反馈窗口点击“查看回复”，
+或在账户菜单选择“我的反馈与回复…”查看全部反馈及回复（需在线登录及服务功能支持）。
 “账户信息”中可申请绑定手机号和邮箱，管理员审批通过后生效。
 图片可在发送前预览和移除，需要服务功能支持；不支持时可移除图片提交文字。
 日志入口为“设置 → 打开日志目录”。也可通过 GitHub Issues 反馈：
@@ -115,7 +121,7 @@ https://github.com/Iqx-nwafu/hydraulic-workbench-studio/issues
 
 七、下载与校验
 
-官方 Release：https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.2
+官方 Release：https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases
 请使用本版 SHA256SUMS.txt 核对下载的安装程序或 ZIP，来源不明或校验不一致时停止运行。
 程序未提供 Windows Authenticode 代码签名，Windows 可能显示“未知发布者”；
 SHA-256 和更新元数据签名不等同于 Windows 代码签名，不要关闭安全防护来强行安装。

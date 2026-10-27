@@ -1,10 +1,12 @@
-# 有压管网瞬态水力仿真平台 · 2.4.2
+# 有压管网瞬态水力仿真平台 · 2.4.4
 
 面向城市供水与灌溉输配水的一维瞬态水力分析平台，支持单管、分支及环状管网的特征线法（MOC）和有限体积法（FVM）。从参数建模、图纸识别与拓扑复核，到瞬态计算、真实纵断面与压力校核、关阀方案比较、轮灌规划与监测布设和结果报告，在同一工作台内完成分析。
 
 本仓库提供 **Windows 客户端、版本说明和使用文档，不公开软件源代码**。普通用户无需安装 Python 或配置开发环境。
 
-**[下载 2.4.2 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.2/HydraulicWorkbenchStudio-2.4.2-Windows-x64-Setup.exe)** · **[下载完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.2/HydraulicWorkbenchStudio-2.4.2-Windows-x64.zip)** · **[查看本版 Release](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.2)**
+**[下载 2.4.4 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe)** · **[下载完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip)** · **[查看本版 Release](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.4)**
+
+已安装旧版本的用户也可在“设置 → 软件更新…”直接升级到 2.4.4；本版更新要点见下文及 [2.4.4 更新说明](docs/2.4.4更新说明.txt)。
 
 首次使用：下载安装 → 提交注册申请 → 获批后登录。**已有账户继续使用，无需重新注册。**
 
@@ -20,9 +22,23 @@
 | 结果分析与报告 | 查看时程、空间分布、动画、风险提示和守恒信息；保存工况、结果归档、图表及报告 |
 | 拓扑图交付 | 添加可编辑文字标注，输出完整拓扑的 PNG、JPG 或 DWG 文件 |
 | 监测布设与轮灌 | 计算满足流速、压力和水量约束的轮灌方案；在设定误差下确定所需最少的压力计、流量计及位置；可联合设计管径与轮灌，并输出最优性证书 |
+| AI 小助手 | 询问功能位置、操作步骤、参数含义和报错处理；可结合当前页面与工况参数回答，解决不了时一键转为用户反馈 |
 | 中英文工作台 | 按“建模 → 检查 → 计算 → 结果 → 报告”组织操作，支持简体中文和 English |
 
 不同求解方法支持的物理模型和边界条件有所区别。程序会检查当前组合的适用范围；详细说明可在“帮助 → 模型适用范围”查看。
+
+## 2.4.4 更新要点（相比 2.4.2）
+
+1. **AI 小助手**：右上角机器人按钮，可询问功能位置、操作流程、参数含义和报错处理；勾选“附带当前页面与工况”后结合当前情况回答（不发送工况文件、图纸和结果数据），无法解决时一键转为用户反馈。每个账户每天可提问 10 次，需在线登录。
+2. **编号可拖动**：节点编号、管段编号可直接拖到合适位置，隐藏再显示、重新打开工况和导出时位置保持不变；右键“恢复自动位置”可还原。
+3. **批量修改样式**：按住 Ctrl/Shift 多选文字标注和编号，可整体拖动，或右键“统一设置字体、字号与颜色”一次修改。
+4. **导出编号可选**：导出拓扑时可选择是否包含节点编号、管段编号，导出的 PNG/JPG/DWG 与画面调整一致。
+5. **拓扑编辑快捷键**：Delete 删除选中的节点、管段和标注；Ctrl+Z 撤销、Ctrl+Y 重做，结果自动写回工况；识别结果校核窗口同样支持。
+6. **反馈回复**：制作方回复反馈后，登录时右上角提示未读，可在“我的反馈与回复…”中查看。
+7. **节点三通设置更清楚**：节点参数对话框即时说明当前节点能否作为 90° 三通，“强制启用”不满足条件时直接提示原因。
+8. **问题修复**：修复了图纸文件名或工程目录含中文时，保存工况、修改节点参数或开始计算提示 EPANET 302“cannot open input file”且无法继续操作的bug。
+
+操作变化：文字标注改为**单击选中、双击编辑**。编号布局保存在拓扑文件中，旧版本打开时仍按自动位置显示。详细说明见 [2.4.4 更新说明](docs/2.4.4更新说明.txt) 和 [2.4.3 更新说明](docs/2.4.3更新说明.txt)。
 
 ## 2.4.2 相比 2.2.0 新增了什么
 
@@ -43,23 +59,21 @@
 
 详细操作见 [2.4.2 更新说明](docs/2.4.2更新说明.txt)。MOC/FVM、真实纵断面、压力区段与关阀方案比较是平台已有能力，本版更新不改变其基本物理模型。
 
-> **2026-10-26 更新**：本页 2.4.2 安装程序和 ZIP 已替换为包含“监测布设与轮灌”、管径与轮灌联合设计、全局最优求解等功能的正式版本，软件内更新也已同步提供 2.4.2。2026-10-25 曾下载安装 2.4.2 的用户，请按下文“升级到 2.4.2”重新安装一次。
-
 ## 下载、安装与启动
 
-在 [Release 页面](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.2)展开 **Assets**，选择以下文件：
+在 [Release 页面](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.4)展开 **Assets**，选择以下文件：
 
 | 文件 | 用途 |
 | --- | --- |
-| [Windows x64 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.2/HydraulicWorkbenchStudio-2.4.2-Windows-x64-Setup.exe) | 推荐首次使用；按向导安装，并创建桌面和开始菜单快捷方式 |
-| [Windows x64 完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.2/HydraulicWorkbenchStudio-2.4.2-Windows-x64.zip) | 完整解压到自选目录后运行 |
-| [SHA256SUMS.txt](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.2/SHA256SUMS.txt) | 核对安装程序及 ZIP 的 SHA-256 校验值 |
+| [Windows x64 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe) | 推荐首次使用；按向导安装，并创建桌面和开始菜单快捷方式 |
+| [Windows x64 完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip) | 完整解压到自选目录后运行 |
+| [SHA256SUMS.txt](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/SHA256SUMS.txt) | 核对安装程序及 ZIP 的 SHA-256 校验值 |
 
 **GitHub 自动生成的 `Source code (zip/tar.gz)` 和绿色 `Code → Download ZIP` 只包含本仓库的公开文件，不是软件源码或可运行客户端。请下载上表中的安装程序或完整 ZIP。**
 
 运行环境为 Windows 10/11（64 位），建议为安装和后续更新预留至少 2 GB 空间。客户端携带运行依赖和本机 CPU 图纸识别组件，无需另装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。实际计算资源随管网规模、网格和输出设置变化，可在运行前查看检查提示。
 
-**安装版**：双击 `HydraulicWorkbenchStudio-2.4.2-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
+**安装版**：双击 `HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
 
 **免安装版**：在资源管理器中对 ZIP 选择“全部解压”，打开解压后的完整文件夹，运行 **`HydraulicWorkbenchStudioSecure.exe`**。请选择有写入权限的目录，不要在压缩包预览窗口内运行，也不要单独移动主程序；配置、更新器、识图组件和运行库都需保留。
 
@@ -68,7 +82,7 @@
 可在下载文件所在文件夹打开 PowerShell，计算 ZIP 的校验值，并与本版 `SHA256SUMS.txt` 对照：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.2-Windows-x64.zip'
+Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip'
 ```
 
 ## 注册与登录
@@ -129,11 +143,9 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.2-Wi
 
 平台用于科研、教学及辅助分析。图纸识别不能替代真实参数测量；本版不求解泵停机、空化、液柱分离或防护设备。出现汽化阈值越界时，单相模型结果不能继续作为有效物理结论。实际工程应用需核验输入数据与模型适用范围。
 
-## 升级到 2.4.2
+## 升级到 2.4.4
 
-**GitHub Release 与软件内更新服务分别发布。** 2026-10-26 起，软件内更新服务已同步提供本页的 2.4.2 正式版本；请以“软件更新”窗口显示的版本和状态为准。
-
-- **2026-10-25 已从本页安装 2.4.2 的用户**：当天的 2.4.2 安装包不含“监测布设与轮灌”等功能。由于版本号相同，“软件更新”不会再次提示，请下载本页最新安装程序直接覆盖安装（账户、授权和输出目录保留），或将最新 ZIP 解压到新文件夹。安装后项目浏览器中出现“监测布设与轮灌”即为新版本；也可用 `SHA256SUMS.txt` 核对下载文件。
+**GitHub Release 与软件内更新服务分别发布。** 2.4.4 已同时在本页和软件内更新服务提供：已安装旧版本的用户可在“设置 → 软件更新…”直接升级，也可下载本页安装程序覆盖安装（账户、授权和输出目录保留）。请以“软件更新”窗口显示的版本和状态为准。
 
 - **软件内更新**：先保存工况并备份工程和结果，进入 **“设置 → 软件更新…”**，点击“检查更新”；有可用版本时选择“下载并安装更新”。更新期间不要强制结束程序或关机。
 - **完整客户端升级**：下载本版安装程序按向导操作；也可将完整 ZIP 解压到新文件夹后运行。不要将部分新版文件混合覆盖到旧程序目录。确认新版能打开工况和结果后，再整理旧程序。
@@ -148,7 +160,8 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.2-Wi
 - **切换语言**：通过“设置 → 界面语言”选择简体中文或 English，切换前等待计算或导出完成。
 - **打开日志**：通过“设置 → 打开日志目录”定位运行日志。
 - **更换头像**：点击右上角头像菜单，选择“更换头像…”或“恢复默认头像”。
-- **反馈问题**：在线登录后使用右上角“反馈”，或提交 [GitHub Issue](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/issues)。
+- **AI 小助手**：在线登录后点击右上角机器人按钮提问；每个账户每天 10 次，回答仅供参考，涉及工程判断请自行复核。
+- **反馈问题**：在线登录后使用右上角“反馈”，或提交 [GitHub Issue](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/issues)；制作方的回复可在账户菜单“我的反馈与回复…”中查看。
 
 | 常见现象 | 处理方式 |
 | --- | --- |
@@ -158,10 +171,11 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.2-Wi
 | 缺少运行库或识图组件 | 重新下载、核对校验值并完整解压，保留整个程序目录 |
 | 识图首次启动较慢 | 等待组件加载，查看阶段及状态提示，必要时取消任务 |
 | 图片反馈暂不受支持 | 移除图片后提交文字反馈 |
+| 小助手提示暂不可用或次数已用完 | 确认已在线登录；每天 10 次，次日恢复，也可直接使用“反馈” |
 | 联合设计或误差布点耗时较长 | 在“计算设置”中调整时限，底部进度栏可随时取消；查看证书中的上下界和证明状态 |
 | 联系方式申请未生效 | 等待管理员审批；审批前原绑定继续有效 |
 | 导出失败或文件被占用 | 关闭占用目标文件的程序，检查目标目录写入权限后重试 |
 
 反馈请附软件版本、Windows 版本、复现步骤、错误提示及可公开的最小示例。公开 Issue 不要附密码、授权缓存、会话信息或未经允许披露的图纸和项目资料；分享日志前请检查其中的个人与项目信息。
 
-更多说明：[安装与卸载](docs/InstallerReadme.txt) · [客户端说明](docs/ClientReadme.txt) · [2.4.2 更新说明](docs/2.4.2更新说明.txt) · [2.2.0 更新说明](docs/2.2.0更新说明.txt) · [纵断面示例](docs/LongitudinalReadme.txt) · [许可](LICENSE)
+更多说明：[安装与卸载](docs/InstallerReadme.txt) · [客户端说明](docs/ClientReadme.txt) · [2.4.4 更新说明](docs/2.4.4更新说明.txt) · [2.4.3 更新说明](docs/2.4.3更新说明.txt) · [2.4.2 更新说明](docs/2.4.2更新说明.txt) · [2.2.0 更新说明](docs/2.2.0更新说明.txt) · [纵断面示例](docs/LongitudinalReadme.txt) · [许可](LICENSE)
