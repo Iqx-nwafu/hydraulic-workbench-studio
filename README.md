@@ -1,12 +1,12 @@
-# 有压管网瞬态水力仿真平台 · 2.4.4
+# 有压管网瞬态水力仿真平台 · 2.4.5
 
-面向城市供水与灌溉输配水的一维瞬态水力分析平台，支持单管、分支及环状管网的特征线法（MOC）和有限体积法（FVM）。从参数建模、图纸识别与拓扑复核，到瞬态计算、真实纵断面与压力校核、关阀方案比较、轮灌规划与监测布设和结果报告，在同一工作台内完成分析。
+面向城市供水与灌溉输配水的一维瞬态水力分析平台，支持单管、分支及环状管网的特征线法（MOC）和有限体积法（FVM）。从参数建模、图纸识别与拓扑复核，到瞬态计算、真实纵断面与压力校核、关阀方案比较、轮灌规划与监测布设和结果报告，在同一工作台内完成分析。**2.4.5 起，平台的水力计算能力还可以通过无界面研究 API 和命令行工具在界面之外被研究代码直接调用。**
 
-本仓库提供 **Windows 客户端、版本说明和使用文档，不公开软件源代码**。普通用户无需安装 Python 或配置开发环境。
+本仓库提供 **Windows 客户端、科研命令行工具、版本说明和使用文档，不公开软件源代码**。普通用户无需安装 Python 或配置开发环境。
 
-**[下载 2.4.4 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe)** · **[下载完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip)** · **[查看本版 Release](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.4)**
+**[下载 2.4.5 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe)** · **[下载完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip)** · **[下载科研命令行工具](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip)** · **[查看本版 Release](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.5)**
 
-已安装旧版本的用户也可在“设置 → 软件更新…”直接升级到 2.4.4；本版更新要点见下文及 [2.4.4 更新说明](docs/2.4.4更新说明.txt)。
+已安装旧版本的用户也可在“设置 → 软件更新…”直接升级到 2.4.5；本版更新要点见下文及 [2.4.5 更新说明](docs/2.4.5更新说明.txt)。
 
 首次使用：下载安装 → 提交注册申请 → 获批后登录。**已有账户继续使用，无需重新注册。**
 
@@ -22,10 +22,74 @@
 | 结果分析与报告 | 查看时程、空间分布、动画、风险提示和守恒信息；保存工况、结果归档、图表及报告 |
 | 拓扑图交付 | 添加可编辑文字标注，输出完整拓扑的 PNG、JPG 或 DWG 文件 |
 | 监测布设与轮灌 | 计算满足流速、压力和水量约束的轮灌方案；在设定误差下确定所需最少的压力计、流量计及位置；可联合设计管径与轮灌，并输出最优性证书 |
+| 科研接口（2.4.5 新增） | 以规划 JSON 为输入，在界面之外批量评估轮灌组、仿真故障与恢复时间轴、运行蒙特卡洛，结果带版本与输入哈希，可直接接入研究代码与优化器 |
 | AI 小助手 | 询问功能位置、操作步骤、参数含义和报错处理；可结合当前页面与工况参数回答，解决不了时一键转为用户反馈 |
 | 中英文工作台 | 按“建模 → 检查 → 计算 → 结果 → 报告”组织操作，支持简体中文和 English |
 
 不同求解方法支持的物理模型和边界条件有所区别。程序会检查当前组合的适用范围；详细说明可在“帮助 → 模型适用范围”查看。
+
+## 2.4.5 新增：科研接口
+
+2.4.5 把平台用于轮灌规划的稳态水力模型开放为可编程接口。研究代码不再需要在界面里逐组点击，也不需要自行重写水力计算，就能得到与平台规划器同一口径、可复现、可归档的结果。
+
+### 无界面研究 API（`hydraulic_moc.api`，API 1.0）
+
+| 能力 | 说明 |
+| --- | --- |
+| 稳态评估 | 树状管网矩阵精确求解，环状管网全局梯度法迭代；单组或成批评估轮灌组；H-W、D-W 与固定 Darcy 系数可逐管混用，逐管局部损失系数与运动黏度 |
+| 故障隔离 | 节点、管段、出水口三类故障按连通性自动隔离：树状管网隔离故障点下游子树，环状管网自动经其他路径改道供水 |
+| 时间轴仿真 | 轮灌计划、时变水源水头（阶梯、线性、常量）、故障与恢复事件；在每个事件后调用外部重规划钩子，可接入 NSGA-II 等任意优化器 |
+| 蒙特卡洛 | 固定种子、逐场景独立可复现（第 i 个场景由 `[seed, i]` 决定），多进程并行，结果与进程数和执行顺序无关 |
+| 精确缓存 | 按“开启出水口集合 + 关闭管段集合”精确缓存，水源水头只做整体平移，大规模组合搜索显著提速且不引入任何近似 |
+| 结果归档 | 每份结果附 `api_version`、`platform_version`、输入 JSON 的 SHA-256、`network_digest`、`model_digest` 与全部生效选项 |
+
+指标包括开启出水口最低/平均压力、各类约束违反量与计数、可行性，以及时间轴仿真的供水达标率、亏缺量、压力均匀度、可行时间占比等；目标函数由研究自行用这些指标组合。
+
+### 科研命令行工具
+
+Release 附带独立的 **科研命令行工具**（`HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip`），解压即用，不需要登录、不需要 Python 环境，也不依赖客户端是否安装。
+
+```powershell
+hydraulic-moc api describe    --project net.json                                   # 管网概况与最终生效的模型选项
+hydraulic-moc api evaluate    --project net.json --groups groups.jsonl --output out.jsonl [--detail]
+hydraulic-moc api simulate    --project net.json --scenario scenario.json --output sim/
+hydraulic-moc api monte-carlo --project net.json --config mc.json --output mc/ --workers auto
+hydraulic-moc irrigation-eval --project net.json ...                                # 轮灌组稳态评估器
+```
+
+| 命令 | 输入 | 输出 |
+| --- | --- | --- |
+| `evaluate` | JSONL，每行 `{"id", "open": [...], "source_head_m"?, "unavailable"?, "faults"?}` | `.jsonl`（`--detail` 含逐节点、逐管段、逐出水口的值）或 `.csv`，另写 `<名>.manifest.json` |
+| `simulate` | `{"schedule": [...], "head"?, "events"?, "horizon_h"?}` | `segments.csv`、`outlets.csv`、`summary.json` |
+| `monte-carlo` | 场景规格 + `"scenarios"` + `"schedule"` | `scenarios.csv`、`events.csv`、`manifest.json` |
+
+所有模型选项都可用命令行参数覆盖：`--friction --local-loss-ratio --min-pressure --min-velocity --max-velocity --velocity-scope --max-source-flow --outlet-law --outlet-design-pressure`。
+
+### 规划 JSON：统一输入
+
+科研接口与桌面端“监测布设与轮灌”共用同一种规划 JSON（`hydraulic-irrigation-planning` v1）：在界面中“保存规划”得到的文件可直接交给接口；接口生成的文件也能在界面中打开。`topology.nodes / pipes` 描述单水源的树状或环状管网，`fields` 的每条记录是一个出水口（设计流量与目标水量），`settings` 保存首部压力、最低压力、流速范围与供水上限。接口专用选项放在 `settings.hydraulic_api` 下，桌面端不受影响。单位固定：长度 m、流量 m³/h（接口结果中带 `_m3_s` 后缀的为 m³/s）、水量 m³、时间 h。
+
+### 研究口径默认值
+
+不带任何选项时即为轮灌研究口径，研究不需要在文件里重复写这些值：
+
+| 选项 | 默认值 |
+| --- | --- |
+| 摩阻律 | EPANET 2.2 全流态（与平台瞬态求解器一致） |
+| 局部损失 | 按沿程损失的 0.1 倍计入（逐管 K 值另外累加） |
+| 最低压力水头 / 设计压力 h_d | 11.4 m |
+| 流速范围 | 0.3–2.5 m/s，只校核有流量的管段 |
+| 出流规则 | `linear_cap`：q_d·clip(p/h_d, 0, 1) |
+
+界面保存的规划 JSON 若自带 `min_pressure_m`、`velocity_scope` 等共用键，则以文件中的值为准；`describe` 会打印最终生效的值，全部选项进入 `model_digest` 随结果一起归档。
+
+### 轮灌组稳态评估器（`irrigation_eval`）
+
+面向轮灌调度研究的轻量评估接口（命令 `hydraulic-moc irrigation-eval`），树状管网、D-W 摩阻，输入灌水器流量与不可用集合，输出逐节点压力、逐管流量流速与可行性，带精确缓存。与无界面 API 在同一口径下 200 组随机组合逐位一致，已有研究代码可以继续沿用。
+
+### 适用范围
+
+接口做稳态和逐段稳态计算，面向轮灌规划、调度优化与可靠性分析；瞬态（水锤）校核请使用平台的 MOC/FVM 求解器。支持单水源、被动管道组成的树状与环状管网，与桌面端规划器的支持范围一致。完整的输入格式、选项、Python 调用方式与稳定性约定见 [无界面研究 API 说明](docs/无界面研究API说明.md)。
 
 ## 2.4.4 更新要点（相比 2.4.2）
 
@@ -61,28 +125,31 @@
 
 ## 下载、安装与启动
 
-在 [Release 页面](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.4)展开 **Assets**，选择以下文件：
+在 [Release 页面](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.5)展开 **Assets**，选择以下文件：
 
 | 文件 | 用途 |
 | --- | --- |
-| [Windows x64 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe) | 推荐首次使用；按向导安装，并创建桌面和开始菜单快捷方式 |
-| [Windows x64 完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip) | 完整解压到自选目录后运行 |
-| [SHA256SUMS.txt](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.4/SHA256SUMS.txt) | 核对安装程序及 ZIP 的 SHA-256 校验值 |
+| [Windows x64 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe) | 推荐首次使用；按向导安装，并创建桌面和开始菜单快捷方式 |
+| [Windows x64 完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip) | 完整解压到自选目录后运行 |
+| [科研命令行工具 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip) | 无界面研究 API 的命令行工具，解压即用，不需要登录和 Python 环境 |
+| [SHA256SUMS.txt](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/SHA256SUMS.txt) | 核对安装程序、ZIP 及命令行工具的 SHA-256 校验值 |
 
 **GitHub 自动生成的 `Source code (zip/tar.gz)` 和绿色 `Code → Download ZIP` 只包含本仓库的公开文件，不是软件源码或可运行客户端。请下载上表中的安装程序或完整 ZIP。**
 
 运行环境为 Windows 10/11（64 位），建议为安装和后续更新预留至少 2 GB 空间。客户端携带运行依赖和本机 CPU 图纸识别组件，无需另装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。实际计算资源随管网规模、网格和输出设置变化，可在运行前查看检查提示。
 
-**安装版**：双击 `HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
+**安装版**：双击 `HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
 
 **免安装版**：在资源管理器中对 ZIP 选择“全部解压”，打开解压后的完整文件夹，运行 **`HydraulicWorkbenchStudioSecure.exe`**。请选择有写入权限的目录，不要在压缩包预览窗口内运行，也不要单独移动主程序；配置、更新器、识图组件和运行库都需保留。
+
+**科研命令行工具**：解压 `HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip` 后，在 PowerShell 中进入该目录运行 `hydraulic-moc api describe --project <规划JSON>`；随包 `examples/` 含示例管网、轮灌组、时间轴场景与蒙特卡洛配置。
 
 当前程序未提供 Windows Authenticode 代码签名，系统可能显示“未知发布者”。请核对本仓库下载来源和 SHA-256；文件来源不明或校验不一致时应重新下载，不要关闭安全防护。
 
 可在下载文件所在文件夹打开 PowerShell，计算 ZIP 的校验值，并与本版 `SHA256SUMS.txt` 对照：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip'
+Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip'
 ```
 
 ## 注册与登录
@@ -122,9 +189,19 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.4-Wi
 3. 点击 **“1 计算轮灌”**，查看各轮开启单元、时长、供水量和压力统计；全部硬约束通过并取得证书后，才能进入下一步。
 4. 核对仪表误差、估计容限和验证域后点击 **“2 校核误差并布点”**，在“传感器布设”和“逐轮误差校核”查看所需仪表位置及每轮误差界。图中圆形为压力计、三角形为流量计。
 5. 需要同时设计管径时，在“管径与轮灌设计”页启用管径设计，填写“内径与成本目录”，在“计算设置”中选择求解方式后“生成初始方案并联合搜索”，再“选择并冻结”所选方案。
-6. 通过“保存规划”保存可再次打开的输入，通过“导出结果”保存方案、布点、误差校核及最优性证书。
+6. 通过“保存规划”保存可再次打开的输入，通过“导出结果”保存方案、布点、误差校核及最优性证书。保存的规划 JSON 可直接作为科研接口的输入。
 
 轮灌结果对应所输入的管网、田块、约束和误差设置；最少传感器数量只针对已冻结的方案和声明的误差域。成本目录中的示范值为相对指数，实际设计请填写真实报价。
+
+### 科研接口示例
+
+1. 解压科研命令行工具，在 PowerShell 中进入该目录。
+2. 运行 `hydraulic-moc api describe --project examples\farm_network.json`，查看管网概况与最终生效的模型选项。
+3. 运行 `hydraulic-moc api evaluate --project examples\farm_network.json --groups examples\groups.jsonl --output out.jsonl --detail`，得到每个轮灌组的压力、流量、流速与可行性，以及 `out.manifest.json`。
+4. 运行 `hydraulic-moc api simulate --project examples\farm_network.json --scenario examples\scenario.json --output sim\`，得到含故障与恢复的时间轴结果（`segments.csv`、`outlets.csv`、`summary.json`）。
+5. 运行 `hydraulic-moc api monte-carlo --project examples\farm_network.json --config examples\monte_carlo.json --output mc\ --workers auto`，得到固定种子、可复现的多场景统计。
+
+把 `examples\farm_network.json` 换成在界面中“保存规划”得到的文件，即可对自己的管网做同样的计算。
 
 ## 使用自己的工程数据
 
@@ -143,9 +220,9 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.4-Wi
 
 平台用于科研、教学及辅助分析。图纸识别不能替代真实参数测量；本版不求解泵停机、空化、液柱分离或防护设备。出现汽化阈值越界时，单相模型结果不能继续作为有效物理结论。实际工程应用需核验输入数据与模型适用范围。
 
-## 升级到 2.4.4
+## 升级到 2.4.5
 
-**GitHub Release 与软件内更新服务分别发布。** 2.4.4 已同时在本页和软件内更新服务提供：已安装旧版本的用户可在“设置 → 软件更新…”直接升级，也可下载本页安装程序覆盖安装（账户、授权和输出目录保留）。请以“软件更新”窗口显示的版本和状态为准。
+**GitHub Release 与软件内更新服务分别发布。** 2.4.5 已同时在本页和软件内更新服务提供：已安装旧版本的用户可在“设置 → 软件更新…”直接升级，也可下载本页安装程序覆盖安装（账户、授权和输出目录保留）。请以“软件更新”窗口显示的版本和状态为准。
 
 - **软件内更新**：先保存工况并备份工程和结果，进入 **“设置 → 软件更新…”**，点击“检查更新”；有可用版本时选择“下载并安装更新”。更新期间不要强制结束程序或关机。
 - **完整客户端升级**：下载本版安装程序按向导操作；也可将完整 ZIP 解压到新文件夹后运行。不要将部分新版文件混合覆盖到旧程序目录。确认新版能打开工况和结果后，再整理旧程序。
@@ -173,9 +250,10 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.4-Wi
 | 图片反馈暂不受支持 | 移除图片后提交文字反馈 |
 | 小助手提示暂不可用或次数已用完 | 确认已在线登录；每天 10 次，次日恢复，也可直接使用“反馈” |
 | 联合设计或误差布点耗时较长 | 在“计算设置”中调整时限，底部进度栏可随时取消；查看证书中的上下界和证明状态 |
+| 科研接口报告规划 JSON 无法读取 | 用界面“保存规划”重新导出，或用 `describe` 查看提示的字段；记录不能带多余键 |
 | 联系方式申请未生效 | 等待管理员审批；审批前原绑定继续有效 |
 | 导出失败或文件被占用 | 关闭占用目标文件的程序，检查目标目录写入权限后重试 |
 
 反馈请附软件版本、Windows 版本、复现步骤、错误提示及可公开的最小示例。公开 Issue 不要附密码、授权缓存、会话信息或未经允许披露的图纸和项目资料；分享日志前请检查其中的个人与项目信息。
 
-更多说明：[安装与卸载](docs/InstallerReadme.txt) · [客户端说明](docs/ClientReadme.txt) · [2.4.4 更新说明](docs/2.4.4更新说明.txt) · [2.4.3 更新说明](docs/2.4.3更新说明.txt) · [2.4.2 更新说明](docs/2.4.2更新说明.txt) · [2.2.0 更新说明](docs/2.2.0更新说明.txt) · [纵断面示例](docs/LongitudinalReadme.txt) · [许可](LICENSE)
+更多说明：[安装与卸载](docs/InstallerReadme.txt) · [客户端说明](docs/ClientReadme.txt) · [无界面研究 API 说明](docs/无界面研究API说明.md) · [2.4.5 更新说明](docs/2.4.5更新说明.txt) · [2.4.4 更新说明](docs/2.4.4更新说明.txt) · [2.4.3 更新说明](docs/2.4.3更新说明.txt) · [2.4.2 更新说明](docs/2.4.2更新说明.txt) · [2.2.0 更新说明](docs/2.2.0更新说明.txt) · [纵断面示例](docs/LongitudinalReadme.txt) · [许可](LICENSE)

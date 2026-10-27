@@ -1,4 +1,4 @@
-有压管网瞬态水力仿真平台 2.4.4 — 客户端使用说明
+有压管网瞬态水力仿真平台 2.4.5 — 客户端使用说明
 
 本平台用于单管及分支、环状管网的一维瞬态水力分析，支持 MOC/FVM、图纸识别与拓扑复核、
 真实纵断面与压力校核、关阀方案比较、轮灌规划与监测布设及结果报告。
@@ -6,7 +6,8 @@
 拓扑导出和文字标注，完善高清动态登录、本机头像、截图反馈、联系方式绑定、系统概况及按钮交互。
 2.4.3 修复含中文路径时工况无法保存的问题，新增拓扑界面 Delete 删除、Ctrl+Z 撤销与
 反馈回复查看。2.4.4 新增 AI 小助手、可拖动的节点/管段编号、文字与编号批量样式修改，
-以及导出时可选是否带编号。详细功能见“2.4.4更新说明.txt”“2.4.3更新说明.txt”和
+以及导出时可选是否带编号。2.4.5 新增无界面研究 API、科研命令行工具与轮灌组评估器。
+详细功能见“2.4.5更新说明.txt”“2.4.4更新说明.txt”“2.4.3更新说明.txt”和
 “2.4.2更新说明.txt”。
 
 一、安装与启动
@@ -14,10 +15,10 @@
 客户端适用于 Windows 10/11（64 位），已携带运行依赖和本机 CPU 图纸识别组件。
 无需另外安装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。
 
-安装版：运行 HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe，按向导安装，
+安装版：运行 HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe，按向导安装，
 然后通过桌面或开始菜单启动。安装版和免安装版使用相同账户及计算功能。
 
-免安装版：先完整解压 HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip，
+免安装版：先完整解压 HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip，
 再运行 HydraulicWorkbenchStudioSecure.exe。不要在压缩包预览窗口内运行。
 请保留整个程序文件夹，不要单独移动主程序或删除 auth_distribution.json、
 HydraulicWorkbenchUpdater.exe、recognition_runtime 及其他运行库。
@@ -87,8 +88,9 @@ HydraulicWorkbenchUpdater.exe、recognition_runtime 及其他运行库。
 
 五、更新与数据保护
 
-GitHub Release 与软件内更新服务分别发布。2.4.4 已同时提供 GitHub 安装程序和软件内更新，
-以“设置 → 软件更新…”中实际显示的版本和状态为准。
+GitHub Release 与软件内更新服务分别发布。本版 2.4.5 同时在 GitHub Release 和软件内更新提供，
+以“设置 → 软件更新…”中实际显示的版本和状态为准；已安装旧版本的用户可在软件内直接升级，
+也可下载本版安装程序覆盖安装。
 有可用版本时可选择“检查更新”“下载并安装更新”，并按提示完成。
 
 更新前保存工况，备份工程和结果。更新期间不要强制结束更新器或关机。

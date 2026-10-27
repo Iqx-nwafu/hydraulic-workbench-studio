@@ -1,8 +1,8 @@
-有压管网瞬态水力仿真平台 2.4.4 — 安装版使用说明
+有压管网瞬态水力仿真平台 2.4.5 — 安装版使用说明
 
 一、安装与启动
 
-运行 HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe，按向导完成安装。
+运行 HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe，按向导完成安装。
 程序仅为当前 Windows 用户安装，不需要管理员密码；运行于 Windows 10/11（64 位）。
 请为安装和后续更新预留至少 2 GB 空间。程序携带运行依赖及本机 CPU 图纸识别组件，
 无需另装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。
@@ -28,8 +28,8 @@ https://github.com/Iqx-nwafu/hydraulic-workbench-studio
 
 更新前保存工况并备份工程及结果，等待运行中的计算或导出结束。
 登录后打开“设置 → 软件更新…”，检查并安装该窗口实际提供的版本。
-GitHub Release 与软件内更新服务分别发布；2.4.4 已同时提供 GitHub 安装程序和软件内更新，
-已安装旧版本的用户可在“设置 → 软件更新…”中检查并安装，也可运行本版安装程序覆盖安装。
+GitHub Release 与软件内更新服务分别发布；2.4.5 同时在 GitHub Release 和软件内更新提供，
+已安装旧版本的用户在“设置 → 软件更新…”中检查并安装即可，也可运行本版安装程序覆盖安装。
 更新期间不要强制结束更新器或关机，正常软件内更新后仍可使用原桌面快捷方式。
 
 正常软件内更新保留程序内 outputs、auth_distribution.json 和当前 Windows 用户的授权、设置；
@@ -52,8 +52,8 @@ GitHub Release 与软件内更新服务分别发布；2.4.4 已同时提供 GitH
 五、下载与校验
 
 Release：https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases
-安装文件：HydraulicWorkbenchStudio-2.4.4-Windows-x64-Setup.exe
-免安装文件：HydraulicWorkbenchStudio-2.4.4-Windows-x64.zip
+安装文件：HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe
+免安装文件：HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip
 请用本版 SHA256SUMS.txt 核对下载文件；来源不明或校验不一致时不要运行。
 
 程序未提供 Windows Authenticode 代码签名，系统可能显示“未知发布者”。
