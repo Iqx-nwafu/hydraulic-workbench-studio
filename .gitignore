@@ -3,6 +3,9 @@
 *
 !/.gitignore
 !/README.md
+!/.github/
+/.github/*
+!/.github/README.md
 !/LICENSE
 !/SHA256SUMS.txt
 !/docs/

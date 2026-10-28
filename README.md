@@ -4,7 +4,9 @@
 
 本仓库提供 **Windows 客户端、科研命令行工具、版本说明和使用文档，不公开软件源代码**。普通用户无需安装 Python 或配置开发环境。
 
-**[下载 2.4.5 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe)** · **[下载完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip)** · **[下载科研命令行工具](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip)** · **[查看本版 Release](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.5)**
+**[下载 2.4.5 安装程序（5 个分卷）](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.5)** · **[下载科研命令行工具](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip)** · **[下载完整免安装 ZIP（GitHub）](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip)** · **[全部发行版](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases)**
+
+安装程序超过 Gitee 单个附件 100 MB 的上限，因此切成 5 个分卷发布，下载后双击合并脚本即可还原，方法见下文“下载、安装与启动”。英文说明及全部版本的完整安装包见 [GitHub](https://github.com/Iqx-nwafu/hydraulic-workbench-studio)。
 
 已安装旧版本的用户也可在“设置 → 软件更新…”直接升级到 2.4.5；本版更新要点见下文及 [2.4.5 更新说明](docs/2.4.5更新说明.txt)。
 
@@ -24,7 +26,7 @@
 | 监测布设与轮灌 | 计算满足流速、压力和水量约束的轮灌方案；在设定误差下确定所需最少的压力计、流量计及位置；可联合设计管径与轮灌，并输出最优性证书 |
 | 科研接口（2.4.5 新增） | 以规划 JSON 为输入，在界面之外批量评估轮灌组、仿真故障与恢复时间轴、运行蒙特卡洛，结果带版本与输入哈希，可直接接入研究代码与优化器 |
 | AI 小助手 | 询问功能位置、操作步骤、参数含义和报错处理；可结合当前页面与工况参数回答，解决不了时一键转为用户反馈 |
-| 中英文工作台 | 按“建模 → 检查 → 计算 → 结果 → 报告”组织操作，支持简体中文和 English |
+| 中英文工作台 | 按“建模 → 检查 → 计算 → 结果 → 报告”组织操作，支持简体中文和英文 |
 
 不同求解方法支持的物理模型和边界条件有所区别。程序会检查当前组合的适用范围；详细说明可在“帮助 → 模型适用范围”查看。
 
@@ -47,7 +49,7 @@
 
 ### 科研命令行工具
 
-Release 附带独立的 **科研命令行工具**（`HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip`），解压即用，不需要登录、不需要 Python 环境，也不依赖客户端是否安装。
+发行版附带独立的 **科研命令行工具**（`HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip`），解压即用，不需要登录、不需要 Python 环境，也不依赖客户端是否安装。
 
 ```powershell
 hydraulic-moc api describe    --project net.json                                   # 管网概况与最终生效的模型选项
@@ -125,20 +127,30 @@ hydraulic-moc irrigation-eval --project net.json ...                            
 
 ## 下载、安装与启动
 
-在 [Release 页面](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.5)展开 **Assets**，选择以下文件：
+在 [Gitee 发行版页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.5)下载以下附件：
 
 | 文件 | 用途 |
 | --- | --- |
-| [Windows x64 安装程序](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe) | 推荐首次使用；按向导安装，并创建桌面和开始菜单快捷方式 |
-| [Windows x64 完整免安装 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip) | 完整解压到自选目录后运行 |
-| [科研命令行工具 ZIP](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip) | 无界面研究 API 的命令行工具，解压即用，不需要登录和 Python 环境 |
-| [SHA256SUMS.txt](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/SHA256SUMS.txt) | 核对安装程序、ZIP 及命令行工具的 SHA-256 校验值 |
+| 安装程序分卷 `HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe.001`～`.005` 与 `JoinSetup-2.4.5.cmd` | 推荐首次使用。合并后得到与 GitHub 发布完全相同的安装程序，按向导安装并创建桌面和开始菜单快捷方式 |
+| [科研命令行工具 ZIP](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip) | 无界面研究 API 的命令行工具，解压即用，不需要登录和 Python 环境 |
+| [SHA256SUMS.txt](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/SHA256SUMS.txt) | 核对安装程序、完整 ZIP 及命令行工具的 SHA-256 校验值 |
+| [完整免安装 ZIP（GitHub）](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.5/HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip) | 超过 Gitee 附件容量，仅在 GitHub 提供；完整解压到自选目录后运行 |
 
-**GitHub 自动生成的 `Source code (zip/tar.gz)` 和绿色 `Code → Download ZIP` 只包含本仓库的公开文件，不是软件源码或可运行客户端。请下载上表中的安装程序或完整 ZIP。**
+**合并安装程序**：把 5 个分卷和 `JoinSetup-2.4.5.cmd` 下载到同一文件夹，双击 `JoinSetup-2.4.5.cmd`。脚本会拼回 `HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe` 并自动核对 SHA-256，显示“校验一致”后即可删除分卷。也可以在该文件夹打开命令提示符手动合并，再按下文核对校验值：
+
+```bat
+copy /b HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe.001+HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe.002+HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe.003+HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe.004+HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe.005 HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe
+```
+
+已安装 7-Zip 的，也可以用它打开第一个分卷 `.001`，直接解出合并后的安装程序。
+
+历史版本 2.4.4、2.4.2、2.2.0 的发行说明和校验文件同样在 [Gitee 发行版页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases)提供，对应安装包请从 [GitHub 发行版](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases)下载。
+
+**Gitee 自动生成的“下载 ZIP”和发行版中的源码压缩包只包含本仓库的公开文件，不是软件源码或可运行客户端。请按上表下载安装程序或完整 ZIP。**
 
 运行环境为 Windows 10/11（64 位），建议为安装和后续更新预留至少 2 GB 空间。客户端携带运行依赖和本机 CPU 图纸识别组件，无需另装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。实际计算资源随管网规模、网格和输出设置变化，可在运行前查看检查提示。
 
-**安装版**：双击 `HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
+**安装版**：双击合并得到的 `HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
 
 **免安装版**：在资源管理器中对 ZIP 选择“全部解压”，打开解压后的完整文件夹，运行 **`HydraulicWorkbenchStudioSecure.exe`**。请选择有写入权限的目录，不要在压缩包预览窗口内运行，也不要单独移动主程序；配置、更新器、识图组件和运行库都需保留。
 
@@ -146,15 +158,15 @@ hydraulic-moc irrigation-eval --project net.json ...                            
 
 当前程序未提供 Windows Authenticode 代码签名，系统可能显示“未知发布者”。请核对本仓库下载来源和 SHA-256；文件来源不明或校验不一致时应重新下载，不要关闭安全防护。
 
-可在下载文件所在文件夹打开 PowerShell，计算 ZIP 的校验值，并与本版 `SHA256SUMS.txt` 对照：
+可在下载文件所在文件夹打开 PowerShell，计算安装程序或 ZIP 的校验值，并与本版 `SHA256SUMS.txt` 对照：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip'
+Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe'
 ```
 
 ## 注册与登录
 
-首次注册和首次登录需要联网，且账户服务可用。软件账户独立于 GitHub 账户。
+首次注册和首次登录需要联网，且账户服务可用。软件账户独立于 Gitee 和 GitHub 账户。
 
 1. 在登录窗口点击 **“没有账户？提交注册申请”**，填写账户名、密码及确认密码。
 2. 账户名为 3～32 个字符，可用中文、字母、数字、下划线、点、短横线或 `@`，不可含空格；密码为 6～20 个字符，不可使用程序拒绝的常见密码或包含完整账户名。
@@ -222,11 +234,11 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.5-Wi
 
 ## 升级到 2.4.5
 
-**GitHub Release 与软件内更新服务分别发布。** 2.4.5 已同时在本页和软件内更新服务提供：已安装旧版本的用户可在“设置 → 软件更新…”直接升级，也可下载本页安装程序覆盖安装（账户、授权和输出目录保留）。请以“软件更新”窗口显示的版本和状态为准。
+**发行版页面与软件内更新服务分别发布。** 2.4.5 已同时在 Gitee、GitHub 发行版和软件内更新服务提供：已安装旧版本的用户可在“设置 → 软件更新…”直接升级，也可下载本版安装程序覆盖安装（账户、授权和输出目录保留）。请以“软件更新”窗口显示的版本和状态为准。
 
 - **软件内更新**：先保存工况并备份工程和结果，进入 **“设置 → 软件更新…”**，点击“检查更新”；有可用版本时选择“下载并安装更新”。更新期间不要强制结束程序或关机。
-- **完整客户端升级**：下载本版安装程序按向导操作；也可将完整 ZIP 解压到新文件夹后运行。不要将部分新版文件混合覆盖到旧程序目录。确认新版能打开工况和结果后，再整理旧程序。
-- **离线搬运**：可在联网电脑下载完整 ZIP，核对校验值后转移到目标电脑；新设备首次登录仍需联网。
+- **完整客户端升级**：下载本版安装程序分卷，合并后按向导操作；也可将完整 ZIP（GitHub 提供）解压到新文件夹后运行。不要将部分新版文件混合覆盖到旧程序目录。确认新版能打开工况和结果后，再整理旧程序。
+- **离线搬运**：可在联网电脑下载安装程序或完整 ZIP，核对校验值后转移到目标电脑；新设备首次登录仍需联网。
 
 现有软件账户继续沿用。重新安装或解压不等于重新注册；换设备后使用原账户在线登录即可。程序更新前请自行备份工程及结果，尤其是放在旧程序目录中的自建文件。
 
@@ -234,11 +246,11 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.5-Wi
 
 工况、报告及结果以保存或导出时选择的位置为准，建议集中保存到独立项目目录。默认管网结果位于程序文件夹的 `outputs/network_runs`，可在结果输出页修改。账户授权和登录记忆由当前 Windows 用户保存，复制程序文件夹不会转移本机授权。
 
-- **切换语言**：通过“设置 → 界面语言”选择简体中文或 English，切换前等待计算或导出完成。
+- **切换语言**：通过“设置 → 界面语言”选择简体中文或英文，切换前等待计算或导出完成。
 - **打开日志**：通过“设置 → 打开日志目录”定位运行日志。
 - **更换头像**：点击右上角头像菜单，选择“更换头像…”或“恢复默认头像”。
 - **AI 小助手**：在线登录后点击右上角机器人按钮提问；每个账户每天 10 次，回答仅供参考，涉及工程判断请自行复核。
-- **反馈问题**：在线登录后使用右上角“反馈”，或提交 [GitHub Issue](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/issues)；制作方的回复可在账户菜单“我的反馈与回复…”中查看。
+- **反馈问题**：在线登录后使用右上角“反馈”，或在本仓库的 [Issues 页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/issues)提交问题；制作方的回复可在账户菜单“我的反馈与回复…”中查看。
 
 | 常见现象 | 处理方式 |
 | --- | --- |
@@ -254,6 +266,6 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.5-Wi
 | 联系方式申请未生效 | 等待管理员审批；审批前原绑定继续有效 |
 | 导出失败或文件被占用 | 关闭占用目标文件的程序，检查目标目录写入权限后重试 |
 
-反馈请附软件版本、Windows 版本、复现步骤、错误提示及可公开的最小示例。公开 Issue 不要附密码、授权缓存、会话信息或未经允许披露的图纸和项目资料；分享日志前请检查其中的个人与项目信息。
+反馈请附软件版本、Windows 版本、复现步骤、错误提示及可公开的最小示例。公开提交的问题中不要附密码、授权缓存、会话信息或未经允许披露的图纸和项目资料；分享日志前请检查其中的个人与项目信息。
 
 更多说明：[安装与卸载](docs/InstallerReadme.txt) · [客户端说明](docs/ClientReadme.txt) · [无界面研究 API 说明](docs/无界面研究API说明.md) · [2.4.5 更新说明](docs/2.4.5更新说明.txt) · [2.4.4 更新说明](docs/2.4.4更新说明.txt) · [2.4.3 更新说明](docs/2.4.3更新说明.txt) · [2.4.2 更新说明](docs/2.4.2更新说明.txt) · [2.2.0 更新说明](docs/2.2.0更新说明.txt) · [纵断面示例](docs/LongitudinalReadme.txt) · [许可](LICENSE)
