@@ -1,6 +1,6 @@
-# 无界面研究 API 说明（API 1.0，平台 2.4.5）
+# 无界面研究 API 说明（API 1.0，平台 2.4.6）
 
-平台 2.4.5 起提供面向科研的无界面接口：以平台规划 JSON（`hydraulic-irrigation-planning` v1）为唯一输入，在界面之外直接调用平台用于轮灌规划的稳态水力模型，输出带版本与模型摘要的结构化结果。不需要登录授权，不需要联网。
+平台 2.4.5 起提供面向科研的无界面接口：以平台规划 JSON（`hydraulic-irrigation-planning` v1）为唯一输入，在界面之外直接调用平台用于轮灌规划的稳态水力模型，输出带版本与模型摘要的结构化结果。2.4.6 起命令行工具用平台账户登录一次即可使用，授权有效期内（最长 14 天，且不晚于账户使用期限）计算不需要联网。
 
 | 能力 | 命令 |
 | --- | --- |
@@ -9,17 +9,20 @@
 | 时间轴仿真：时变水头、故障 / 恢复、重规划钩子 | `hydraulic-moc api simulate` |
 | 蒙特卡洛：固定种子场景、多进程 | `hydraulic-moc api monte-carlo` |
 | 轮灌组稳态评估器（树状管网） | `hydraulic-moc irrigation-eval` |
+| 登录 / 查看授权 / 退出登录 | `hydraulic-moc login` / `status` / `logout` |
 
 ## 1. 获取与运行
 
-从 Release 下载 `HydraulicWorkbenchResearchCLI-2.4.5-Windows-x64.zip`，完整解压后在 PowerShell 中进入该目录：
+从 Release 下载 `HydraulicWorkbenchResearchCLI-2.4.6-Windows-x64.zip`，完整解压后在 PowerShell 中进入该目录，先用已获批的平台账户登录一次（需要审批中心在线）：
 
 ```powershell
 .\hydraulic-moc.exe --version
+.\hydraulic-moc.exe login                 # 输入平台账户名和密码；脚本可用 --password-stdin 从标准输入读密码
+.\hydraulic-moc.exe status                # 查看登录账户与授权到期时间
 .\hydraulic-moc.exe api describe --project examples\farm_network.json
 ```
 
-工具自带运行环境，不需要安装 Python，也不依赖桌面客户端。随包 `examples/` 含示例管网 `farm_network.json`、轮灌组 `groups.jsonl`、时间轴场景 `scenario.json` 与蒙特卡洛配置 `monte_carlo.json`，`examples/README.md` 给出对应命令。
+工具自带运行环境，不需要安装 Python，也不依赖桌面客户端；请保留与 exe 同目录的 `auth_distribution.json`。未登录或授权无效时，`api` 与 `irrigation-eval` 计算命令以退出码 3 结束并说明原因；`logout` 删除本机登录记录。随包 `examples/` 含示例管网 `farm_network.json`、轮灌组 `groups.jsonl`、时间轴场景 `scenario.json` 与蒙特卡洛配置 `monte_carlo.json`，`examples/README.md` 给出对应命令。
 
 ## 2. 输入：规划 JSON
 

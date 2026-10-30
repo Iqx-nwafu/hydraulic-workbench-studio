@@ -1,8 +1,8 @@
-有压管网瞬态水力仿真平台 2.4.5 — 安装版使用说明
+有压管网瞬态水力仿真平台 2.4.6 — 安装版使用说明
 
 一、安装与启动
 
-运行 HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe，按向导完成安装。
+运行 HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe，按向导完成安装。
 程序仅为当前 Windows 用户安装，不需要管理员密码；运行于 Windows 10/11（64 位）。
 请为安装和后续更新预留至少 2 GB 空间。程序携带运行依赖及本机 CPU 图纸识别组件，
 无需另装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。
@@ -14,8 +14,10 @@
 二、注册与登录
 
 首次启动点击“没有账户？提交注册申请”，设置账户名、密码及确认密码，
+填写手机号或邮箱（至少一项，建议填邮箱，忘记密码时可用它自助找回），
 阅读《用户须知与隐私说明》并同意后提交。账户名为 3～32 个字符，密码为 6～20 个字符；
 具体输入规则以界面提示为准。申请获批后，联网输入账户名及密码，点击“安全登录”。
+忘记密码时点击登录页“忘记密码？找回密码”，用注册时绑定的邮箱接收验证码后设置新密码。
 安装不等于账户已获批准。已有账户继续使用，无需因安装新版重新注册。
 
 成功在线登录后，软件保存当前 Windows 用户的本机离线授权。后续服务连接失败时，
@@ -27,9 +29,11 @@ https://github.com/Iqx-nwafu/hydraulic-workbench-studio
 三、更新与已有安装
 
 更新前保存工况并备份工程及结果，等待运行中的计算或导出结束。
-登录后打开“设置 → 软件更新…”，检查并安装该窗口实际提供的版本。
-GitHub Release 与软件内更新服务分别发布；2.4.5 同时在 GitHub Release 和软件内更新提供，
-已安装旧版本的用户在“设置 → 软件更新…”中检查并安装即可，也可运行本版安装程序覆盖安装。
+登录后点击右上角头像，选择“软件更新…”，检查并安装该窗口实际提供的版本
+（2.4.5 及更早版本位于头像菜单“设置 → 软件更新…”）。
+GitHub Release 与软件内更新服务分别发布；2.4.6 同时在 GitHub Release 和软件内更新提供，
+已安装 2.4.5 的用户在“设置 → 软件更新…”中检查并安装即可，也可运行本版安装程序覆盖安装。
+升级到 2.4.6 后首次登录需重新阅读并勾选更新后的《用户须知与隐私说明》。
 更新期间不要强制结束更新器或关机，正常软件内更新后仍可使用原桌面快捷方式。
 
 正常软件内更新保留程序内 outputs、auth_distribution.json 和当前 Windows 用户的授权、设置；
@@ -52,8 +56,8 @@ GitHub Release 与软件内更新服务分别发布；2.4.5 同时在 GitHub Rel
 五、下载与校验
 
 Release：https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases
-安装文件：HydraulicWorkbenchStudio-2.4.5-Windows-x64-Setup.exe
-免安装文件：HydraulicWorkbenchStudio-2.4.5-Windows-x64.zip
+安装文件：HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe
+免安装文件：HydraulicWorkbenchStudio-2.4.6-Windows-x64.zip
 请用本版 SHA256SUMS.txt 核对下载文件；来源不明或校验不一致时不要运行。
 
 程序未提供 Windows Authenticode 代码签名，系统可能显示“未知发布者”。
