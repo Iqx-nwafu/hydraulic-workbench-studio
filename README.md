@@ -1,16 +1,16 @@
-# 有压管网瞬态水力仿真平台 · 2.4.6
+# 有压管网瞬态水力仿真平台 · 2.4.7
 
 面向城市供水与灌溉输配水的一维瞬态水力分析平台，支持单管、分支及环状管网的特征线法（MOC）和有限体积法（FVM）。从参数建模、图纸识别与拓扑复核，到瞬态计算、真实纵断面与压力校核、关阀方案比较、轮灌规划与监测布设和结果报告，在同一工作台内完成分析；平台的稳态水力模型还可以通过无界面研究 API 和科研命令行工具直接接入研究代码。
 
-**2.4.6 换上全新 Qt 工作台：建模、检查、计算和结果在同一个界面里联动，菜单与快捷键直达常用操作；网络计算中的管网一键送进轮灌规划；AI 小助手能看到你所在的页面、最近的检查结果和刚弹出的报错，回答直接对准眼前的问题。**
+**2.4.7 起软件更新只下载有变化的文件：平台拆成 19 个独立版本号的模块，只改两个界面文件的更新约 0.14 MB，完整更新包超过 300 MB。客户端新增“API”按钮，在界面里直接调用无界面研究 API；API 1.2 的 `optimize_exact` 给出研究轮灌问题的已证明最优方案，可直接作为进化算法的最优参照。**
 
 本仓库提供 **Windows 客户端、科研命令行工具、版本说明和使用文档，不公开软件源代码**。普通用户无需安装 Python 或配置开发环境。
 
-**[下载 2.4.6 安装程序（分卷）](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.6)** · **[下载科研命令行工具](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.6/HydraulicWorkbenchResearchCLI-2.4.6-Windows-x64.zip)** · **[下载完整免安装 ZIP（GitHub）](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.6/HydraulicWorkbenchStudio-2.4.6-Windows-x64.zip)** · **[全部发行版](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases)**
+**[下载 2.4.7 安装程序（分卷）](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.7)** · **[下载科研命令行工具](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.7/HydraulicWorkbenchResearchCLI-2.4.7-Windows-x64.zip)** · **[下载完整免安装 ZIP（GitHub）](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.7/HydraulicWorkbenchStudio-2.4.7-Windows-x64.zip)** · **[全部发行版](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases)**
 
 安装程序超过 Gitee 单个附件 100 MB 的上限，因此切成若干分卷发布，下载后双击合并脚本即可还原，方法见下文“下载、安装与启动”。英文说明及全部版本的完整安装包见 [GitHub](https://github.com/Iqx-nwafu/hydraulic-workbench-studio)。
 
-已安装 2.4.5 的用户可在右上角头像菜单 **“设置 → 软件更新…”** 直接升级到 2.4.6；本版更新要点见下文及 [2.4.6 更新说明](docs/2.4.6更新说明.txt)。
+已安装 2.4.6 的用户在右上角头像菜单 **“软件更新…”**、2.4.5 用户在 **“设置 → 软件更新…”** 即可直接升级到 2.4.7；本版更新要点见下文及 [2.4.7 更新说明](docs/2.4.7更新说明.txt)。
 
 首次使用：下载安装 → 提交注册申请 → 获批后登录。**已有账户继续使用，无需重新注册。**
 
@@ -26,30 +26,30 @@
 | 结果分析与报告 | 联动浏览网络地图动画、节点与管段结果、探针时程、最短水力路径剖面、事件与告警和纵断面，曲线可悬停读数与缩放；保存工况、结果归档、图表及报告 |
 | 拓扑图交付 | 添加可编辑文字与线标注，输出完整拓扑的 PNG、JPG 或 DWG 文件 |
 | 监测布设与轮灌 | 计算满足流速、压力和水量约束的轮灌方案；在设定误差下确定所需最少的压力计、流量计及位置；可联合设计管径与轮灌，并输出最优性证书；可直接接收网络计算中的管网并保持同步 |
-| 科研接口 | 以规划 JSON 为输入，在界面之外批量评估轮灌组、仿真故障与恢复时间轴、运行蒙特卡洛，结果带版本与输入哈希，可直接接入研究代码与优化器 |
+| 科研接口 | 以规划 JSON 为输入，批量评估轮灌组、仿真故障与恢复时间轴、运行蒙特卡洛，并求研究轮灌问题的已证明最优方案；客户端“API”窗口、命令行和 Python 三种入口结果逐项相同，带版本与输入哈希，可直接接入研究代码与优化器 |
 | AI 小助手 | 询问功能位置、操作步骤、参数含义和报错处理；自动结合当前页面、工况、最近的检查结果和报错原文回答，解决不了时一键转为用户反馈 |
-| 中英文工作台 | 项目浏览器四个工作域，菜单栏“文件 / 求解 / 结果 / 界面 / 帮助”，常用操作配快捷键；支持简体中文和英文 |
+| 中英文工作台 | 项目浏览器四个工作域，菜单栏“文件 / 求解 / 结果 / 界面 / 帮助”，常用操作配快捷键；完整的简体中文与英文界面，高分屏清晰、多显示器自适应 |
+| 分文件更新 | 平台由 19 个独立版本号的模块组成，“帮助 → 关于 → 模块版本”逐项列出；软件更新只下载有变化的文件，逐个校验 SHA-256，失败自动恢复 |
 
 不同求解方法支持的物理模型和边界条件有所区别。程序会检查当前组合的适用范围；详细说明可在“帮助 → 模型适用范围”查看。
 
-## 2.4.6 新增
+## 2.4.7 新增
 
-1. **全新 Qt 工作台**：项目浏览器精简为系统概况、单管模型、网络计算、监测布设与轮灌四个工作域；菜单栏为“文件 / 求解 / 结果 / 界面 / 帮助”。“当前工况”跟随所在页面，`Ctrl+O` 打开、`Ctrl+S` 保存、`F5` 运行、`Esc` 取消，`Ctrl+1`/`Ctrl+2` 直达单管模型和单管结果浏览；所有长任务统一在状态栏显示进度并可取消。
-2. **系统概况实时卡片**：分析域与工况名、模型检查（阻止项与警告数及首条问题）、计算结果是否与当前参数一致、核心验证通过数，一眼看清下一步该做什么。
-3. **联动的结果浏览器**：管网结果把网络地图动画、节点与管段结果表、探针时程、最短水力路径剖面、事件与告警、报告文件和真实纵断面校核放在一起，选中对象即联动；单管结果含水击判定与断面压力、断面流量、波动传播热图、动画分析（可导出 GIF）、沿程诊断、纵断面校核六个视图，参数校准一键回填最佳波速与摩阻。
-4. **网络计算直通轮灌规划**：在“拓扑参数”工具栏点“送往监测布设与轮灌”，或在规划页点“从网络计算导入”，节点高程、坐标、管长、管径、糙率和水源水头一并带入，基础需水量大于 0 的节点自动成为出水口。之后在网络计算中修改管网，回到规划页自动同步，已填的需水量和约束保留。
-5. **AI 小助手更懂你的软件**：知识库按新界面逐页重写，新增“常见任务速查”，覆盖单管关阀水锤、图纸建模、风险定位、关阀方案比较、轮灌布点到科研命令行的完整路径；提问时自动附带当前页面、当前工况、最近一次计算检查结果和刚弹出的错误或警告原文，出错后直接提问即可得到针对性的处理步骤。
-6. **邮箱自助找回密码**：登录页“忘记密码？找回密码”，输入账户名和注册邮箱获取 6 位验证码，验证后直接设置新密码，无需等待审批。注册时即可绑定手机号和邮箱。
-7. **反馈直接粘贴截图**：用 QQ、微信、Snipaste 或 `Win+Shift+S` 截图后，在反馈窗口按 `Ctrl+V` 或点“粘贴截图”即可附上。
-8. **科研命令行账户登录**：`hydraulic-moc login` 用平台账户登录一次，之后无需打开软件界面即可运行 `api` 与 `irrigation-eval` 计算，授权有效期内无需联网；`status` 查看授权到期时间，`logout` 删除本机登录记录。
+1. **软件更新只下载有变化的文件**：平台按功能拆成 19 个模块（界面外壳与图标、计算内核、单管计算、网络工况、拓扑与图纸识别、轮灌设计与优化、科研接口等），每个模块有独立的版本号。检查更新时，版本说明最前面列出本次更新的模块和版本变化；下载前软件先比对本机文件，只取回内容不同的文件，逐个校验 SHA-256 后与未变的文件组装成新版本，替换、启动检查和失败自动恢复与完整更新包相同，用户配置和 outputs 目录照常保留。只改两个界面文件的更新约 0.14 MB，完整更新包超过 300 MB，比对和下载通常只需几秒。“帮助 → 关于 → 模块版本”列出每个模块的版本和内容，运行日志同时记录各模块版本，反馈的问题可以直接对应到具体模块。
+2. **客户端里直接调用科研接口**：菜单栏“帮助”右侧新增“API”按钮，打开“科研接口（API）”窗口，不必另装命令行工具。“本机计算”页选择规划 JSON（文件、“监测布设与轮灌”页当前规划或示例管网）后，一键完成管网概况、轮灌组稳态评估、时间轴仿真、蒙特卡洛和精确最优轮灌五类计算；缺少轮灌组、情景或蒙特卡洛配置时，按规划中的出水口“生成模板…”。窗口与命令行使用同一套参数解析和计算函数，输出文件和 manifest 与命令行逐项相同，可直接作为论文复现材料。“模型设置”页统一覆盖九项模型选项和并行进程数，“命令行与脚本”页一键复制与当前设置完全等价的命令行和 Python 代码。
+3. **精确最优轮灌（API 1.2 `optimize_exact`）**：对研究轮灌问题（每个出水口开一次、固定人数分组、每组时长相同、恒定水头）给出压力均匀度的已证明最优方案和最优性上界，可直接作为 NSGA-II 等进化算法的最优参照。24、36 个灌水器的缩减网络分别约 40 s、12–18 min 证明最优；48 个灌水器 1 h 内给出与最优相差不超过 0.11 个百分点的方案。命令行同步新增 `api optimize-exact`，输出 `plan.json`、`schedule.csv` 和记录上界与间隙的 manifest，结果可直接交给 `simulate` 复核。
+4. **与科研三目标同一口径（API 1.1）**：`simulate` 新增 `head_sampling`（每个灌水时段开始取一次水头）和 `pressure_weighting`（分段等权）两个研究口径选项；`plan_objectives` 直接返回三目标（100 − 供水达成率、平均缺水量、100 − 压力均匀度），`irrigation_metrics` 新增分段违反比例与 `constraint_violation`。取研究口径时，三目标和约束违反度与科研代码一致到浮点舍入（100 组水头 × 原方案与随机方案，最大差 3e-14）；不写这两个选项时结果与 API 1.0 完全相同。
+5. **高分屏清晰、多显示器自适应**：顶栏图标、头像、校徽与院徽按 100%–400% 每档显示缩放各备一张原尺寸图，高分屏上清晰锐利；窗口按所在显示器的可用区域打开，拖到缩放比例不同的另一块屏幕时按新屏幕重新排版，较高的页面改为页内滚动。项目浏览器的“单管模型”“网络计算”单击即可展开或收起，工况设置与计算设置的输入框统一宽度、单位单独成列；“关于”和用户须知改为分节排版。
+6. **完整的英文界面**：补齐 471 条英文提示，监测布设与轮灌、全局优化、传感器认证和科研命令行账户校验全部是地道英文。网络计算统一使用“网络工况”一词（“文件 → 打开网络工况… / 保存网络工况”），与“网络计算”页名一致。
+7. **图纸识别导入更顺畅**：工程放在 D: 盘、软件装在 C: 盘时，图纸识别导入管网照常完成；还没有打开网络工况时识别图纸，在复核窗口点“确认并导入拓扑”后直接生成网络工况并打开到拓扑参数页。
 
-升级后首次登录需重新阅读并勾选更新后的《用户须知与隐私说明》（新增“账户联系方式与找回密码”一段）。完整说明见 [2.4.6 更新说明](docs/2.4.6更新说明.txt)。
+升级后首次登录需重新阅读并勾选《用户须知与隐私说明》（版本 2026-10-30.1，写明 AI 小助手各服务商的所在地），模型训练授权继续有效。完整说明见 [2.4.7 更新说明](docs/2.4.7更新说明.txt)。
 
 ## 科研接口
 
-平台把用于轮灌规划的稳态水力模型开放为可编程接口（2.4.5 起）。研究代码不再需要在界面里逐组点击，也不需要自行重写水力计算，就能得到与平台规划器同一口径、可复现、可归档的结果。
+平台把用于轮灌规划的稳态水力模型开放为可编程接口（2.4.5 起），2.4.7 起客户端菜单栏的“API”按钮可在界面里直接调用同一套接口。研究代码不再需要在界面里逐组点击，也不需要自行重写水力计算，就能得到与平台规划器同一口径、可复现、可归档的结果。
 
-### 无界面研究 API（`hydraulic_moc.api`，API 1.0）
+### 无界面研究 API（`hydraulic_moc.api`，API 1.2）
 
 | 能力 | 说明 |
 | --- | --- |
@@ -58,13 +58,15 @@
 | 时间轴仿真 | 轮灌计划、时变水源水头（阶梯、线性、常量）、故障与恢复事件；在每个事件后调用外部重规划钩子，可接入 NSGA-II 等任意优化器 |
 | 蒙特卡洛 | 固定种子、逐场景独立可复现（第 i 个场景由 `[seed, i]` 决定），多进程并行，结果与进程数和执行顺序无关 |
 | 精确缓存 | 按“开启出水口集合 + 关闭管段集合”精确缓存，水源水头只做整体平移，大规模组合搜索显著提速且不引入任何近似 |
+| 研究口径（1.1） | `head_sampling`、`pressure_weighting` 与科研三目标口径对齐，`plan_objectives` 直接返回三目标，与科研代码一致到 3e-14 |
+| 精确最优轮灌（1.2） | `optimize_exact` 枚举全部可行组，对方案均值分支定界（LP 松弛 + 集合划分 MILP），给出压力均匀度的已证明最优方案与有效上界 |
 | 结果归档 | 每份结果附 `api_version`、`platform_version`、输入 JSON 的 SHA-256、`network_digest`、`model_digest` 与全部生效选项 |
 
 指标包括开启出水口最低/平均压力、各类约束违反量与计数、可行性，以及时间轴仿真的供水达标率、亏缺量、压力均匀度、可行时间占比等；目标函数由研究自行用这些指标组合。
 
 ### 科研命令行工具
 
-发行版附带独立的 **科研命令行工具**（`HydraulicWorkbenchResearchCLI-2.4.6-Windows-x64.zip`），解压即用，不需要 Python 环境，也不依赖客户端是否安装。首次使用先用已获批的平台账户登录一次，授权有效期内（最长 14 天，且不晚于账户使用期限）计算不需要联网。
+发行版附带独立的 **科研命令行工具**（`HydraulicWorkbenchResearchCLI-2.4.7-Windows-x64.zip`），解压即用，不需要 Python 环境，也不依赖客户端是否安装。首次使用先用已获批的平台账户登录一次，授权有效期内（最长 14 天，且不晚于账户使用期限）计算不需要联网。
 
 ```powershell
 hydraulic-moc login                                                                 # 平台账户登录（脚本可用 --password-stdin）
@@ -73,6 +75,7 @@ hydraulic-moc api describe    --project net.json                                
 hydraulic-moc api evaluate    --project net.json --groups groups.jsonl --output out.jsonl [--detail]
 hydraulic-moc api simulate    --project net.json --scenario scenario.json --output sim/
 hydraulic-moc api monte-carlo --project net.json --config mc.json --output mc/ --workers auto
+hydraulic-moc api optimize-exact --project net.json --group-size 4 --step-h 4 --time-limit 600 --output exact/   # 精确最优轮灌
 hydraulic-moc irrigation-eval --project net.json ...                                # 轮灌组稳态评估器
 hydraulic-moc logout                                                                # 删除本机登录记录
 ```
@@ -82,6 +85,7 @@ hydraulic-moc logout                                                            
 | `evaluate` | JSONL，每行 `{"id", "open": [...], "source_head_m"?, "unavailable"?, "faults"?}` | `.jsonl`（`--detail` 含逐节点、逐管段、逐出水口的值）或 `.csv`，另写 `<名>.manifest.json` |
 | `simulate` | `{"schedule": [...], "head"?, "events"?, "horizon_h"?}` | `segments.csv`、`outlets.csv`、`summary.json` |
 | `monte-carlo` | 场景规格 + `"scenarios"` + `"schedule"` | `scenarios.csv`、`events.csv`、`manifest.json` |
+| `optimize-exact` | 只需 `--project`；`--group-size`、`--step-h`、`--time-limit`（秒）、`--source-head`、`--seed` | `plan.json`、`schedule.csv`、`manifest.json`（含最优性上界与间隙） |
 
 所有模型选项都可用命令行参数覆盖：`--friction --local-loss-ratio --min-pressure --min-velocity --max-velocity --velocity-scope --max-source-flow --outlet-law --outlet-design-pressure`。未登录或授权无效时，计算命令以退出码 3 结束并说明原因，便于批处理脚本判断。
 
@@ -113,6 +117,7 @@ hydraulic-moc logout                                                            
 
 ## 历史版本要点
 
+- **2.4.6**：全新 Qt 工作台；系统概况实时卡片与联动结果浏览器；网络计算直通轮灌规划；AI 小助手结合当前页面、检查结果和报错原文回答；邮箱自助找回密码；反馈粘贴截图；科研命令行账户登录。见 [2.4.6 更新说明](docs/2.4.6更新说明.txt)。
 - **2.4.5**：无界面研究 API、科研命令行工具与轮灌组稳态评估器，见 [2.4.5 更新说明](docs/2.4.5更新说明.txt)。
 - **2.4.4 / 2.4.3**：AI 小助手；节点、管段编号可拖动且随工况保存；批量修改标注样式；导出拓扑时可选是否带编号；拓扑编辑撤销重做；反馈回复提醒。见 [2.4.4 更新说明](docs/2.4.4更新说明.txt)、[2.4.3 更新说明](docs/2.4.3更新说明.txt)。
 - **2.4.2**：监测布设与轮灌工作域（轮灌规划、最少传感器布设、管径与轮灌联合设计、最优性证书）；PNG/JPG/DWG 拓扑导出与文字标注；带截图的反馈；联系方式绑定；全部 CPU 核心并行计算。见 [2.4.2 更新说明](docs/2.4.2更新说明.txt)。
@@ -120,41 +125,41 @@ hydraulic-moc logout                                                            
 
 ## 下载、安装与启动
 
-在 [Gitee 发行版页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.6)下载以下附件：
+在 [Gitee 发行版页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.4.7)下载以下附件：
 
 | 文件 | 用途 |
 | --- | --- |
-| 安装程序分卷 `HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe.001` 起的全部分卷与 `JoinSetup-2.4.6.cmd` | 推荐首次使用。合并后得到与 GitHub 发布完全相同的安装程序，按向导安装并创建桌面和开始菜单快捷方式 |
-| [科研命令行工具 ZIP](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.6/HydraulicWorkbenchResearchCLI-2.4.6-Windows-x64.zip) | 无界面研究 API 的命令行工具，解压即用，不需要 Python 环境；首次使用先 `login` |
-| [SHA256SUMS.txt](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.6/SHA256SUMS.txt) | 核对安装程序、完整 ZIP 及命令行工具的 SHA-256 校验值 |
-| [完整免安装 ZIP（GitHub）](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.6/HydraulicWorkbenchStudio-2.4.6-Windows-x64.zip) | 超过 Gitee 附件容量，仅在 GitHub 提供；完整解压到自选目录后运行 |
+| 安装程序分卷 `HydraulicWorkbenchStudio-2.4.7-Windows-x64-Setup.exe.001` 起的全部分卷与 `JoinSetup-2.4.7.cmd` | 推荐首次使用。合并后得到与 GitHub 发布完全相同的安装程序，按向导安装并创建桌面和开始菜单快捷方式 |
+| [科研命令行工具 ZIP](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.7/HydraulicWorkbenchResearchCLI-2.4.7-Windows-x64.zip) | 无界面研究 API 的命令行工具，解压即用，不需要 Python 环境；首次使用先 `login` |
+| [SHA256SUMS.txt](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.7/SHA256SUMS.txt) | 核对安装程序、完整 ZIP 及命令行工具的 SHA-256 校验值 |
+| [完整免安装 ZIP（GitHub）](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/download/v2.4.7/HydraulicWorkbenchStudio-2.4.7-Windows-x64.zip) | 超过 Gitee 附件容量，仅在 GitHub 提供；完整解压到自选目录后运行 |
 
-**合并安装程序**：把全部分卷和 `JoinSetup-2.4.6.cmd` 下载到同一文件夹，双击 `JoinSetup-2.4.6.cmd`。脚本会拼回 `HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe` 并自动核对 SHA-256，显示“校验一致”后即可删除分卷。也可以在该文件夹打开命令提示符手动合并，再按下文核对校验值：
+**合并安装程序**：把全部分卷和 `JoinSetup-2.4.7.cmd` 下载到同一文件夹，双击 `JoinSetup-2.4.7.cmd`。脚本会拼回 `HydraulicWorkbenchStudio-2.4.7-Windows-x64-Setup.exe` 并自动核对 SHA-256，显示“校验一致”后即可删除分卷。也可以在该文件夹打开命令提示符手动合并，再按下文核对校验值：
 
 ```bat
-copy /b HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe.0* HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe
+copy /b HydraulicWorkbenchStudio-2.4.7-Windows-x64-Setup.exe.0* HydraulicWorkbenchStudio-2.4.7-Windows-x64-Setup.exe
 ```
 
 已安装 7-Zip 的，也可以用它打开第一个分卷 `.001`，直接解出合并后的安装程序。
 
-历史版本 2.4.5、2.4.4、2.4.2、2.2.0 的发行说明和校验文件同样在 [Gitee 发行版页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases)提供，对应安装包请从 [GitHub 发行版](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases)下载。
+历史版本 2.4.6、2.4.5、2.4.4、2.4.2、2.2.0 的发行说明和校验文件同样在 [Gitee 发行版页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/releases)提供，对应安装包请从 [GitHub 发行版](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases)下载。
 
 **Gitee 自动生成的“下载 ZIP”和发行版中的源码压缩包只包含本仓库的公开文件，不是软件源码或可运行客户端。请按上表下载安装程序或完整 ZIP。**
 
 运行环境为 Windows 10/11（64 位），建议为安装和后续更新预留至少 2 GB 空间。客户端携带运行依赖和本机 CPU 图纸识别组件，无需另装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。实际计算资源随管网规模、网格和输出设置变化，可在运行前查看计算检查中心的提示。
 
-**安装版**：双击合并得到的 `HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
+**安装版**：双击合并得到的 `HydraulicWorkbenchStudio-2.4.7-Windows-x64-Setup.exe`，按向导为当前 Windows 用户安装，完成后从桌面或开始菜单启动。
 
 **免安装版**：在资源管理器中对 ZIP 选择“全部解压”，打开解压后的完整文件夹，运行 **`HydraulicWorkbenchStudioSecure.exe`**。请选择有写入权限的目录，不要在压缩包预览窗口内运行，也不要单独移动主程序；配置、更新器、识图组件和运行库都需保留。
 
-**科研命令行工具**：解压 `HydraulicWorkbenchResearchCLI-2.4.6-Windows-x64.zip` 后，在 PowerShell 中进入该目录，先运行 `.\hydraulic-moc.exe login` 输入平台账户名和密码，再运行 `.\hydraulic-moc.exe api describe --project <规划JSON>`；随包 `examples/` 含示例管网、轮灌组、时间轴场景与蒙特卡洛配置。请保留与 exe 同目录的 `auth_distribution.json`。
+**科研命令行工具**：解压 `HydraulicWorkbenchResearchCLI-2.4.7-Windows-x64.zip` 后，在 PowerShell 中进入该目录，先运行 `.\hydraulic-moc.exe login` 输入平台账户名和密码，再运行 `.\hydraulic-moc.exe api describe --project <规划JSON>`；随包 `examples/` 含示例管网、轮灌组、时间轴场景与蒙特卡洛配置。请保留与 exe 同目录的 `auth_distribution.json`。
 
 当前程序未提供 Windows Authenticode 代码签名，系统可能显示“未知发布者”。请核对本仓库下载来源和 SHA-256；文件来源不明或校验不一致时应重新下载，不要关闭安全防护。
 
 可在下载文件所在文件夹打开 PowerShell，计算安装程序或 ZIP 的校验值，并与本版 `SHA256SUMS.txt` 对照：
 
 ```powershell
-Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.6-Windows-x64-Setup.exe'
+Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.7-Windows-x64-Setup.exe'
 ```
 
 ## 注册与登录
@@ -184,7 +189,7 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.6-Wi
 3. 进入 **“计算设置”**，保留默认 MOC，点击 **“打开计算检查中心”**。查看阻止项及警告，存在阻止项时点“定位并修复”先修正。
 4. 点击 **“运行 MOC 全网计算”**，或在网络计算页按 `F5`。计算在后台运行，状态栏显示进度，可点“取消”或按 `Esc`。
 5. 完成后自动进入 **“结果输出”**，在 **“纵断面校核”** 页签查看管中心线、最大/最小 HGL 包络及超限区段，点击 35 m 高点查看压力时程，或点“定位最不利位置”。
-6. 需要更改输出位置时，在“结果输出”页的“输出目录”点击“更改…”。通过 **“文件 → 保存管网工况”** 保存可再次编辑的工况 JSON。
+6. 需要更改输出位置时，在“结果输出”页的“输出目录”点击“更改…”。通过 **“文件 → 保存网络工况”** 保存可再次编辑的工况 JSON。
 
 单管示例：同样用 **“文件 → 打开工况…”** 打开 `configs/longitudinal_single_pipe.json`，程序自动进入单管模型；在单管页点“计算检查中心”后“开始 MOC 计算”（或按 `F5`），完成后自动进入“结果浏览”。完整 CSV 导入、FVM 对照与方案比较步骤见 [纵断面使用示例](docs/LongitudinalReadme.txt)。
 
@@ -208,8 +213,9 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.6-Wi
 3. 运行 `hydraulic-moc api evaluate --project examples\farm_network.json --groups examples\groups.jsonl --output out.jsonl --detail`，得到每个轮灌组的压力、流量、流速与可行性，以及 `out.manifest.json`。
 4. 运行 `hydraulic-moc api simulate --project examples\farm_network.json --scenario examples\scenario.json --output sim\`，得到含故障与恢复的时间轴结果（`segments.csv`、`outlets.csv`、`summary.json`）。
 5. 运行 `hydraulic-moc api monte-carlo --project examples\farm_network.json --config examples\monte_carlo.json --output mc\ --workers auto`，得到固定种子、可复现的多场景统计。
+6. 运行 `hydraulic-moc api optimize-exact --project examples\farm_network.json --group-size 2 --step-h 4 --output exact\`，不到一秒得到示例管网 8 个出水口两两一组的已证明最优方案（`plan.json`、`schedule.csv`、`manifest.json`）。
 
-把 `examples\farm_network.json` 换成在界面中“保存规划”得到的文件，即可对自己的管网做同样的计算。
+把 `examples\farm_network.json` 换成在界面中“保存规划”得到的文件，即可对自己的管网做同样的计算。以上计算也可以在客户端点“API”按钮，在“本机计算”页选“示例管网”直接运行，输出与命令行逐项相同。
 
 ## 使用自己的工程数据
 
@@ -228,14 +234,14 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.6-Wi
 
 平台用于科研、教学及辅助分析。图纸识别不能替代真实参数测量；本版不求解泵停机、空化、液柱分离或防护设备。出现汽化阈值越界时，单相模型结果不能继续作为有效物理结论。实际工程应用需核验输入数据与模型适用范围。
 
-## 升级到 2.4.6
+## 升级到 2.4.7
 
-**发行版页面与软件内更新服务分别发布。** 2.4.6 同时在 Gitee、GitHub 发行版和软件内更新服务提供：已安装旧版本的用户可在软件内直接升级，也可下载本版安装程序覆盖安装（账户、授权和输出目录保留）。请以“软件更新”窗口显示的版本和状态为准。
+**发行版页面与软件内更新服务分别发布。** 2.4.7 同时在 Gitee、GitHub 发行版和软件内更新服务提供：已安装旧版本的用户可在软件内直接升级，也可下载本版安装程序覆盖安装（账户、授权和输出目录保留）。请以“软件更新”窗口显示的版本和状态为准。
 
-- **软件内更新**：先保存工况并备份工程和结果。2.4.5 及更早版本点击右上角头像，选择 **“设置 → 软件更新…”**；2.4.6 起在头像菜单直接选择 **“软件更新…”**。点击“检查更新”，有可用版本时选择“下载并安装更新”。更新期间不要强制结束程序或关机。
+- **软件内更新**：先保存工况并备份工程和结果。2.4.5 及更早版本点击右上角头像，选择 **“设置 → 软件更新…”**；2.4.6 起在头像菜单直接选择 **“软件更新…”**。点击“检查更新”，有可用版本时选择“下载并安装更新”。更新期间不要强制结束程序或关机。2.4.7 起软件内更新只下载有变化的文件，版本说明最前面列出本次更新的模块；从 2.4.6 及更早版本升级到 2.4.7 时下载完整更新包。
 - **完整客户端升级**：下载本版安装程序分卷，合并后按向导操作；也可将完整 ZIP（GitHub 提供）解压到新文件夹后运行。不要将部分新版文件混合覆盖到旧程序目录。确认新版能打开工况和结果后，再整理旧程序。
 - **离线搬运**：可在联网电脑下载安装程序或完整 ZIP，核对校验值后转移到目标电脑；新设备首次登录仍需联网。
-- **科研命令行工具**：下载 2.4.6 版命令行工具，解压后先 `login` 一次即可继续使用原有脚本。
+- **科研命令行工具**：下载 2.4.7 版命令行工具，解压后先 `login` 一次即可继续使用原有脚本；也可以直接在客户端点“API”按钮计算。
 
 现有软件账户继续沿用，升级后首次登录需重新勾选更新后的《用户须知与隐私说明》。重新安装或解压不等于重新注册；换设备后使用原账户在线登录即可。程序更新前请自行备份工程及结果，尤其是放在旧程序目录中的自建文件。
 
@@ -243,8 +249,9 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.6-Wi
 
 工况、报告及结果以保存或导出时选择的位置为准，建议集中保存到独立项目目录。默认管网结果位于程序文件夹的 `outputs/network_runs`，可在“结果输出”页修改。账户授权和登录记忆由当前 Windows 用户保存，复制程序文件夹不会转移本机授权。
 
-- **切换语言**：在“设置”页（顶栏齿轮或项目浏览器底部“⚙ 设置”）的“界面语言”选择简体中文或 English，界面重新打开，登录状态保留。
-- **打开日志**：点击项目浏览器底部“▤ 日志”，或在“设置”页点“打开日志目录”。
+- **切换语言**：在“设置”页（项目浏览器底部“设置”，或右上角头像菜单“设置”）的“界面语言”选择简体中文或 English，界面重新打开，登录状态保留。
+- **打开日志**：点击项目浏览器底部“日志”，或在“设置”页点“打开日志目录”。
+- **查看模块版本**：“帮助 → 关于 → 模块版本”列出每个模块的版本和内容，反馈问题时一并说明可更快定位。
 - **更换头像**：点击右上角头像菜单，选择“更换头像…”或“恢复默认头像”。
 - **AI 小助手**：在线登录后点击顶栏机器人图标提问；勾选“附带当前页面与工况”后结合当前情况回答（不发送工况文件、图纸和结果数据）。每个账户每天 10 次，回答仅供参考，涉及工程判断请自行复核。
 - **反馈问题**：在线登录后点击顶栏 ✉ 图标提交，截图可直接 `Ctrl+V` 粘贴；也可在本仓库的 [Issues 页面](https://gitee.com/Iqx-nwafu/hydraulic-workbench-studio/issues)提交问题。制作方的回复可在头像菜单“我的反馈与回复…”中查看。
@@ -264,8 +271,9 @@ Get-FileHash -Algorithm SHA256 -LiteralPath '.\HydraulicWorkbenchStudio-2.4.6-Wi
 | 命令行提示“尚未登录”或授权已到期 | 运行 `hydraulic-moc login` 重新登录；`hydraulic-moc status` 查看授权到期时间 |
 | 科研接口报告规划 JSON 无法读取 | 用界面“保存规划”重新导出，或用 `describe` 查看提示的字段；记录不能带多余键 |
 | 联系方式申请未生效 | 等待管理员审批；审批前原绑定继续有效 |
+| 软件更新提示改为下载完整更新包 | 本机文件与新版差异较大或某个文件未通过校验时，软件自动改下完整更新包，按提示继续即可 |
 | 导出失败或文件被占用 | 关闭占用目标文件的程序，检查目标目录写入权限后重试 |
 
 反馈请附软件版本、Windows 版本、复现步骤、错误提示及可公开的最小示例。公开提交的问题中不要附密码、授权缓存、会话信息或未经允许披露的图纸和项目资料；分享日志前请检查其中的个人与项目信息。
 
-更多说明：[2.4.6 更新说明](docs/2.4.6更新说明.txt) · [安装与卸载](docs/InstallerReadme.txt) · [客户端说明](docs/ClientReadme.txt) · [无界面研究 API 说明](docs/无界面研究API说明.md) · [2.4.5 更新说明](docs/2.4.5更新说明.txt) · [2.4.4 更新说明](docs/2.4.4更新说明.txt) · [2.4.3 更新说明](docs/2.4.3更新说明.txt) · [2.4.2 更新说明](docs/2.4.2更新说明.txt) · [2.2.0 更新说明](docs/2.2.0更新说明.txt) · [纵断面示例](docs/LongitudinalReadme.txt) · [许可](LICENSE)
+更多说明：[2.4.7 更新说明](docs/2.4.7更新说明.txt) · [安装与卸载](docs/InstallerReadme.txt) · [客户端说明](docs/ClientReadme.txt) · [无界面研究 API 说明](docs/无界面研究API说明.md) · [2.4.6 更新说明](docs/2.4.6更新说明.txt) · [2.4.5 更新说明](docs/2.4.5更新说明.txt) · [2.4.4 更新说明](docs/2.4.4更新说明.txt) · [2.4.3 更新说明](docs/2.4.3更新说明.txt) · [2.4.2 更新说明](docs/2.4.2更新说明.txt) · [2.2.0 更新说明](docs/2.2.0更新说明.txt) · [纵断面示例](docs/LongitudinalReadme.txt) · [许可](LICENSE)
