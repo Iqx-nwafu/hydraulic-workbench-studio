@@ -1,4 +1,4 @@
-# 无界面研究 API 说明（API 1.2，平台 2.4.7）
+# 无界面研究 API 说明（API 1.2，平台 2.4.8）
 
 平台 2.4.5 起提供面向科研的无界面接口：以平台规划 JSON（`hydraulic-irrigation-planning` v1）为唯一输入，在界面之外直接调用平台用于轮灌规划的稳态水力模型，输出带版本与模型摘要的结构化结果。2.4.6 起命令行工具用平台账户登录一次即可使用，授权有效期内（最长 14 天，且不晚于账户使用期限）计算不需要联网。2.4.7 起桌面客户端菜单栏的“API”按钮可在界面里直接调用同一套接口（见第 1 节）；API 1.1 新增与科研三目标同一口径的取样选项、分段违反指标和 `plan_objectives`（第 5 节），API 1.2 新增精确最优轮灌 `optimize-exact`（第 5 节）。
 
@@ -14,7 +14,7 @@
 
 ## 1. 获取与运行
 
-从 Release 下载 `HydraulicWorkbenchResearchCLI-2.4.7-Windows-x64.zip`，完整解压后在 PowerShell 中进入该目录，先用已获批的平台账户登录一次（需要审批中心在线）：
+从 Release 下载 `HydraulicWorkbenchResearchCLI-2.4.8-Windows-x64.zip`，完整解压后在 PowerShell 中进入该目录，先用已获批的平台账户登录一次（需要审批中心在线）：
 
 ```powershell
 .\hydraulic-moc.exe --version
@@ -136,7 +136,7 @@ hydraulic-moc api optimize-exact --project net.json --group-size 4 --step-h 4 --
 
 - 第 i 个场景使用随机种子 `[seed, i]`，因此每个场景单独可复现，与进程数、执行顺序、生成的场景总数都无关。
 - `head`：除第 5 节的曲线写法外，还支持 `uniform`（每个时段独立均匀抽样）。`faults.target` 可取 `node` / `pipe` / `outlet`；`candidates` 可取 `outlet_nodes` / `all_nodes` / `outlets` 或显式 ID 列表；`count` 是闭区间 [lo, hi]；`repair_h` 给出修复时长区间，取 `null` 时恢复时刻在（故障时刻, 视界）内均匀抽取。
-- 每个场景输出一行，含全网指标、受影响出水口指标和缓存命中数；`--workers auto` 使用全部 CPU 核心。
+- 每个场景输出一行，含全网指标、受影响出水口指标和缓存命中数；`--workers auto` 按场景数、逻辑核数 − 1（留一个核给其他程序）和空闲内存 70% 所能容纳的进程数三者中的最小值分配进程（2.4.8 起，与客户端“设置 → 计算资源”的自动方式相同），结果与进程数无关。
 
 ## 7. 轮灌组稳态评估器（`irrigation-eval`）
 
