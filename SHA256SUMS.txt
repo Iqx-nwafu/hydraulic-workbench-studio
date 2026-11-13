@@ -1,3 +1,3 @@
-12a6630634af135e59edebd68391115529f88d1b13d69e30c4907ecbc86454c2  HydraulicWorkbenchStudio-2.4.8-Windows-x64-Setup.exe
-7ad442004c0096946d05bcfb26f8938429f63dcbfafed4164c150445fb07b7f7  HydraulicWorkbenchStudio-2.4.8-Windows-x64.zip
-f65ef05a08e6e3da89ca09a9f941ec8f64233aeea05ec074ae01cd3cdd163532  HydraulicWorkbenchResearchCLI-2.4.8-Windows-x64.zip
+ca0b0659e1b13c20e1b4980c15ca35fe9542df3f8bad63a91331cfd75ed75cdd  HydraulicWorkbenchStudio-2.4.9-Windows-x64-Setup.exe
+efebf1fdac7c41b1d3eaa827614430b3f6bac6f110ac87c7742a057f4e281f86  HydraulicWorkbenchStudio-2.4.9-Windows-x64.zip
+43b1e8182a6f8e24746aef7521fd1cff60e918a0c9264352519ab3474735575e  HydraulicWorkbenchResearchCLI-2.4.9-Windows-x64.zip
