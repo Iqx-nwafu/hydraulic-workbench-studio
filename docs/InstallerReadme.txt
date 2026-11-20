@@ -1,8 +1,8 @@
-有压管网瞬态水力仿真平台 2.4.9 — 安装版使用说明
+有压管网瞬态水力仿真平台 2.5.0 — 安装版使用说明
 
 一、安装与启动
 
-运行 HydraulicWorkbenchStudio-2.4.9-Windows-x64-Setup.exe，按向导完成安装。
+运行 HydraulicWorkbenchStudio-2.5.0-Windows-x64-Setup.exe，按向导完成安装。
 程序仅为当前 Windows 用户安装，不需要管理员密码；运行于 Windows 10/11（64 位）。
 请为安装和后续更新预留至少 2 GB 空间。程序携带运行依赖及本机 CPU 图纸识别组件，
 无需另装 Python、PyTorch 或 CUDA，也不要求 NVIDIA 显卡。
@@ -22,7 +22,7 @@
 
 成功在线登录后，软件保存当前 Windows 用户的本机离线授权。后续服务连接失败时，
 程序尝试使用有效的本机授权；仍点击“安全登录”，无需寻找独立离线按钮。
-换电脑、换 Windows 用户或删除授权缓存后需重新在线登录。
+换电脑、换 Windows 用户或删除授权缓存后需重新在线登录。若服务明确拒绝账户或设备，请先恢复有效授权并重新在线验证。
 详细操作见随包 ClientReadme.txt，以及仓库首页：
 https://github.com/Iqx-nwafu/hydraulic-workbench-studio
 
@@ -31,12 +31,9 @@ https://github.com/Iqx-nwafu/hydraulic-workbench-studio
 更新前保存工况并备份工程及结果，等待运行中的计算或导出结束。
 登录后点击右上角头像，选择“软件更新…”，检查并安装该窗口实际提供的版本
 （2.4.5 及更早版本位于头像菜单“设置 → 软件更新…”）。
-GitHub Release 与软件内更新服务分别发布；2.4.9 同时在 GitHub Release 和软件内更新提供，
-已安装 2.2.0 至 2.4.8 的用户在软件内检查并安装即可，也可运行本版安装程序覆盖安装。
-2.4.7 起软件内更新只下载有变化的文件，逐个校验 SHA-256 后与未变的文件组装成新版本；
-2.4.7、2.4.8 用户只下载有变化的文件；从 2.4.6 及更早版本升级到 2.4.9 时下载完整更新包。
-更新期间不要强制结束更新器或关机，正常软件内更新后仍可使用原桌面快捷方式。
-2.4.9 直连 https://hws.aulos.cn。旧客户端入口在正式发布后保留 7 天，请在过渡期内升级。
+首次安装可在本版 GitHub Release 下载 Windows 安装程序或完整免安装 ZIP。已安装旧版的用户也可以使用本版安装程序覆盖安装。
+支持差量更新的客户端按需下载变化的文件，旧客户端也可使用完整更新包。本版更新器在替换程序前检查发布清单和实际文件。
+更新期间不要强制结束更新器或关机。2.4.9 起客户端直连 https://hws.aulos.cn；无法通过旧入口更新时，请使用本版下载页。
 
 正常软件内更新保留程序内 outputs、auth_distribution.json 和当前 Windows 用户的授权、设置；
 其他自建文件请保存到独立项目目录并自行备份，不要依赖更新器保留任意文件。
@@ -52,15 +49,14 @@ GitHub Release 与软件内更新服务分别发布；2.4.9 同时在 GitHub Rel
 保留整个客户端目录，不要单独移动 EXE、模型、运行库或 auth_distribution.json。
 不要删除安装目录内的 .installer 文件夹，它用于正常卸载。
 可在 Windows“设置 → 应用”中找到本平台并选择卸载，或使用开始菜单的卸载入口。
-2.4.9 也可在软件“设置 → 卸载平台”或运行 HydraulicWorkbenchUninstaller.exe 按安装清单卸载。
-卸载保留计算输出及当前 Windows 用户的账户授权、设置等本地数据，不注销软件账户。
-自行添加的文件和后续更新新增文件可能保留在原程序目录，请确认备份后自行整理。
+本版也可从项目浏览器左下角“设置”选择“卸载平台…”，或运行 HydraulicWorkbenchUninstaller.exe，按安装清单删除平台文件。
+平台卸载器保留 outputs 和自行添加的文件。它会另行询问是否清除这台电脑的登录信息、设置和本地数据；选择“否”可在重新安装后继续使用。卸载不会注销账户。
 
 五、下载与校验
 
-Release：https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases
-安装文件：HydraulicWorkbenchStudio-2.4.9-Windows-x64-Setup.exe
-免安装文件：HydraulicWorkbenchStudio-2.4.9-Windows-x64.zip
+2.5.0 下载页：https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.5.0
+安装文件：HydraulicWorkbenchStudio-2.5.0-Windows-x64-Setup.exe
+免安装文件：HydraulicWorkbenchStudio-2.5.0-Windows-x64.zip
 请用本版 SHA256SUMS.txt 核对下载文件；来源不明或校验不一致时不要运行。
 
 程序未提供 Windows Authenticode 代码签名，系统可能显示“未知发布者”。

@@ -1,4 +1,4 @@
-# 无界面研究 API 说明（API 1.3，平台 2.4.9）
+# 无界面研究 API 说明（API 1.3，平台 2.5.0）
 
 平台 2.4.5 起提供面向科研的无界面接口：基础轮灌接口以平台规划 JSON（`hydraulic-irrigation-planning` v1）为输入，在界面之外直接调用平台用于轮灌规划的稳态水力模型，输出带版本与模型摘要的结构化结果。2.4.6 起命令行工具用平台账户登录一次即可使用，授权有效期内（最长 14 天，且不晚于账户使用期限）计算不需要联网。2.4.7 起桌面客户端菜单栏的“API”按钮可在界面里直接调用同一套接口（见第 1 节）；API 1.1 新增与科研三目标同一口径的取样选项、分段违反指标和 `plan_objectives`（第 5 节），API 1.2 新增精确最优轮灌 `optimize-exact`（第 5 节）。平台 2.4.9 的 API 1.3 增加轮灌规划、多目标分组、布点校核、轮灌瞬态、单管/管网瞬态、灌水量识别和渠道分析；这些工作流使用各自的输入文件，见第 10 节。
 
@@ -18,7 +18,7 @@
 
 ## 1. 获取与运行
 
-从 Release 下载 `HydraulicWorkbenchResearchCLI-2.4.9-Windows-x64.zip`，完整解压后在 PowerShell 中进入该目录，先用已获批的平台账户登录一次（需要审批中心在线）：
+从 [2.5.0 下载页](https://github.com/Iqx-nwafu/hydraulic-workbench-studio/releases/tag/v2.5.0)取得 `HydraulicWorkbenchResearchCLI-2.5.0-Windows-x64.zip`，完整解压后在 PowerShell 中进入该目录，先用已获批的平台账户登录一次（需要审批中心在线）：
 
 ```powershell
 .\hydraulic-moc.exe --version
@@ -27,7 +27,7 @@
 .\hydraulic-moc.exe api describe --project examples\farm_network.json
 ```
 
-工具自带运行环境，不需要安装 Python，也不依赖桌面客户端；请保留与 exe 同目录的 `auth_distribution.json`。未登录或授权无效时，`api` 与 `irrigation-eval` 计算命令以退出码 3 结束并说明原因；`logout` 删除本机登录记录。随包 `examples/` 含示例管网 `farm_network.json`、轮灌组 `groups.jsonl`、时间轴场景 `scenario.json` 与蒙特卡洛配置 `monte_carlo.json`，`examples/README.md` 给出对应命令（含 `optimize-exact`）。
+工具自带运行环境，不需要安装 Python，也不依赖桌面客户端；请保留与 exe 同目录的 `auth_distribution.json`。未登录或授权无效时，`api` 与 `irrigation-eval` 计算命令以退出码 3 结束并说明原因；`logout` 删除本机登录记录。随包 `examples/` 含示例管网 `farm_network.json`、轮灌组 `groups.jsonl`、时间轴场景 `scenario.json` 与蒙特卡洛配置 `monte_carlo.json`，压缩包根目录的 `README.txt` 给出对应命令（含 `optimize-exact`）。
 
 **客户端入口（2.4.7 起）**：桌面客户端菜单栏“帮助”右侧的“API”按钮打开“科研接口（API）”窗口，不需要另装命令行工具。
 
@@ -35,7 +35,7 @@
 - “模型设置”：第 3 节九个选项的覆盖值（留空不覆盖）、蒙特卡洛进程数、缓存条目和输出根目录，保存后长期生效。
 - “命令行与脚本”：与当前选择完全等价的命令行和 Python 代码，可直接放进批处理；“为本机授权…”等同于 `hydraulic-moc login`。
 
-2.4.9 账户与授权服务直连 https://hws.aulos.cn，不回退 ngrok。旧客户端入口在正式发布后保留 7 天，具体停止日期以发布通知为准；服务不可达时，已有有效离线授权仍按原期限使用。
+2.4.9 起账户与授权服务直连 https://hws.aulos.cn。服务暂时不可达时，已有有效离线授权仍按原期限使用。2.5.0 收到服务明确的账户停用、过期或设备拒绝后，会停止使用该账户旧的本机授权；恢复授权后应重新执行 `hydraulic-moc login`。
 
 ## 2. 输入：规划 JSON
 
